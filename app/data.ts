@@ -117,7 +117,7 @@ export const BLOG_POSTS: BlogPost[] = [
     uid: 'blog-1',
   },
   {
-    title: 'How Kilo Code uses PostHog as the connective tissue behind a hyper-fast growth engine',
+    title: 'How Kilo Code uses PostHog to power hyper-fast growth',
     description: 'A customer story on PostHog about scaling growth at Kilo Code',
     link: 'https://posthog.com/customers/kilocode',
     uid: 'blog-2',
