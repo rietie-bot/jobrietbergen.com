@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: 'Job Rietbergen — Head of Growth @ Kilo',
     template: '%s | Job Rietbergen'
   },
-  description: 'Builder and growth operator based in Amsterdam. Head of Growth at Kilo, previously founded Alphadoc and Onjo AI. 16+ years growing companies.',
+  description: 'Builder and growth operator based in Amsterdam. Currently leading growth at Kilo, an open-source coding agent. Previously founded Alphadoc and Onjo AI. Background in marketing with enough data and code skills to be dangerous.',
 };
 
 const geist = Geist({

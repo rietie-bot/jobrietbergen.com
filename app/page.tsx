@@ -137,10 +137,10 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Builder and growth operator based in Amsterdam. 16+ years growing companies,
-            500+ ventures advised. Currently leading growth at{' '}
+            Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
             <a href="https://kilo.ai" className="underline dark:text-zinc-300">Kilo</a>,
-            an open-source AI coding agent. Previously founded Alphadoc and Onjo AI.
+            an open-source coding agent. Previously founded Alphadoc and Onjo AI.
+            Background in marketing with enough data and code skills to be dangerous.
           </p>
           <p className="mt-3 text-sm italic text-zinc-500 dark:text-zinc-500">
             &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
