@@ -111,10 +111,16 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Code Supernova: New Frontier Stealth AI Model Now Free in Kilo Code',
-    description: 'Exploring the latest AI model integration in Kilo Code',
-    link: 'https://jobkilo.substack.com',
+    title: 'How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role',
+    description: 'Building an interactive pricing calculator with AI coding tools',
+    link: 'https://blog.kilo.ai/p/how-i-use-kilo-for-slack-and-code-reviewer',
     uid: 'blog-1',
+  },
+  {
+    title: 'How Kilo Code uses PostHog as the connective tissue behind a hyper-fast growth engine',
+    description: 'A customer story on PostHog about scaling growth at Kilo Code',
+    link: 'https://posthog.com/customers/kilocode',
+    uid: 'blog-2',
   },
 ]
 
