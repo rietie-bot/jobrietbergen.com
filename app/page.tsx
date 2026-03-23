@@ -140,7 +140,7 @@ export default function Personal() {
             <img
               src="/profile.jpg"
               alt="Job Rietbergen"
-              className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
+              className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover object-[center_20%] ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
             />
           </div>
           <div className="flex-1">
