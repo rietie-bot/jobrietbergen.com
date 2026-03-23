@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Rietbergen</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 620px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #888;
+            border-left: 3px solid #667eea;
+            padding-left: 1rem;
+            margin: 2rem auto;
+            max-width: 480px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .bio {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .highlight {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: border-color 0.2s;
+        }
+
+        .highlight:hover {
+            border-color: #667eea;
+        }
+
+        .highlight .number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .highlight .label {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 0.25rem;
+        }
+
+        .experience {
+            text-align: left;
+            margin: 2.5rem 0;
+        }
+
+        .experience h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+
+        .role {
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+            border-left: 2px solid #222;
+        }
+
+        .role:hover {
+            border-left-color: #667eea;
+        }
+
+        .role .title {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .role .company {
+            color: #667eea;
+        }
+
+        .role .desc {
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 0.7rem 1.4rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .links a:hover {
+            border-color: #667eea;
+            color: #fff;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .footer {
+            margin-top: 3rem;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 2rem 1.2rem; }
+            h1 { font-size: 1.8rem; }
+            .highlights { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar">👋</div>
+
+        <h1>Job Rietbergen</h1>
+        <p class="tagline">Head of Growth @ <a href="https://kilo.ai" style="color: #667eea; text-decoration: none;">Kilo</a> · Amsterdam</p>
+
+        <div class="quote">
+            "Learn to sell, learn to build. If you can do both, you'll be unstoppable."
+            <span>— Naval</span>
+        </div>
+
+        <div class="highlights">
+            <div class="highlight">
+                <div class="number">16+</div>
+                <div class="label">Years growing companies</div>
+            </div>
+            <div class="highlight">
+                <div class="number">500+</div>
+                <div class="label">Ventures advised on growth</div>
+            </div>
+            <div class="highlight">
+                <div class="number">30K+</div>
+                <div class="label">Substack subscribers</div>
+            </div>
+            <div class="highlight">
+                <div class="number">2x</div>
+                <div class="label">Founder</div>
+            </div>
+        </div>
+
+        <p class="bio">
+            Builder and growth operator based in Amsterdam. Currently leading growth at
+            <strong style="color:#fff">Kilo</strong>, an open-source coding agent.
+            Previously founded <strong style="color:#fff">Alphadoc</strong> and
+            <strong style="color:#fff">Onjo AI</strong>.
+            Background in marketing with enough data and code skills to be dangerous.
+        </p>
+
+        <div class="experience">
+            <h2>Experience</h2>
+            <div class="role">
+                <div class="title">Head of Growth <span class="company">@ Kilo</span></div>
+                <div class="desc">Open-source AI coding agent · $8M seed</div>
+            </div>
+            <div class="role">
+                <div class="title">Co-founder & CEO <span class="company">@ Alphadoc</span></div>
+                <div class="desc">Developer documentation platform</div>
+            </div>
+            <div class="role">
+                <div class="title">Founder <span class="company">@ Onjo AI</span></div>
+                <div class="desc">AI venture</div>
+            </div>
+            <div class="role">
+                <div class="title">Growth Leadership</div>
+                <div class="desc">Growth Tribe · Marketer Technologies · Founda Health · Rocket Internet / CityDeal (→ Groupon)</div>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="https://www.linkedin.com/in/jobrietbergen/">LinkedIn</a>
+            <a href="https://x.com/jobrietbergen">𝕏</a>
+            <a href="https://github.com/jobrietbergen">GitHub</a>
+            <a href="https://jobkilo.substack.com">Substack</a>
+            <a href="mailto:job@jobrietbergen.com">Email</a>
+        </div>
+
+        <div class="footer">
+            Built with ☕ in Amsterdam
+        </div>
+    </div>
+</body>
+</html>
