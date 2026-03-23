@@ -100,7 +100,7 @@ function MagneticSocialLink({
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-3 py-1.5 text-base text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
       >
         {children}
         <svg
@@ -135,16 +135,25 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
-            <a href="https://kilo.ai" className="underline dark:text-zinc-300">Kilo</a>,
-            an open-source coding agent. Previously founded Alphadoc and Onjo AI.
-            Background in marketing with enough data and code skills to be dangerous.
-          </p>
-          <p className="mt-3 text-sm italic text-zinc-500 dark:text-zinc-500">
-            &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
-          </p>
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
+          <div className="shrink-0">
+            <img
+              src="/profile.jpg"
+              alt="Job Rietbergen"
+              className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
+            />
+          </div>
+          <div className="flex-1">
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
+              <a href="https://kilo.ai" className="underline dark:text-zinc-300">Kilo</a>,
+              an open-source coding agent. Previously founded Alphadoc and Onjo AI.
+              Background in marketing with enough data and code skills to be dangerous.
+            </p>
+            <p className="mt-4 text-base italic text-zinc-500 dark:text-zinc-500">
+              &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
+            </p>
+          </div>
         </div>
       </motion.section>
 
@@ -152,7 +161,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Ventures</h3>
+        <h3 className="mb-5 text-xl font-medium">Ventures</h3>
         <div className="flex flex-col space-y-2">
           {PROJECTS.map((project) => (
             <a
@@ -185,7 +194,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h3 className="mb-5 text-xl font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
             <a
@@ -223,7 +232,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
+        <h3 className="mb-3 text-xl font-medium">Blog</h3>
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -259,8 +268,8 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
-        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+        <h3 className="mb-5 text-xl font-medium">Connect</h3>
+        <p className="mb-5 text-lg text-zinc-600 dark:text-zinc-400">
           Feel free to contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}
