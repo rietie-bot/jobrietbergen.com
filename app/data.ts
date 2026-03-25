@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Kilo Code',
     description:
-      'Open-source AI coding agent. Raised $8M seed.',
+      'Open-source AI coding agent. 1.5M+ developers, $8M seed funding.',
     link: 'https://kilo.ai',
     id: 'project1',
   },
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Kilo',
+    company: 'Kilo Code',
     title: 'Head of Growth',
     start: '2024',
     end: 'Present',
@@ -84,7 +84,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work4',
   },
   {
-    company: 'Marketer Technologies',
+    company: 'Marketer Real Estate Technologies',
     title: 'Head of Growth',
     start: '2016',
     end: '2018',
@@ -93,14 +93,14 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Growth Tribe',
-    title: 'Growth Lead',
+    title: 'Founding Employee & Growth Lead',
     start: '2015',
     end: '2016',
     link: 'https://growthtribe.io',
     id: 'work6',
   },
   {
-    company: 'Rocket Internet / CityDeal (→ Groupon)',
+    company: 'CityDeal / Groupon (Rocket Internet)',
     title: 'Early Employee',
     start: '2010',
     end: '2015',
