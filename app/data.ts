@@ -85,6 +85,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2021',
     end: '2022',
     link: 'https://www.marketer.com/',
+    id: 'work5',
   },
   {
     company: 'Growth Tribe',
