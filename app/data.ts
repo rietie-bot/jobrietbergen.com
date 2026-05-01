@@ -1,7 +1,7 @@
 type Project = {
   name: string
   description: string
-  link: string
+  link?: string
   video?: string
   image?: string
   id: string
@@ -12,7 +12,7 @@ type WorkExperience = {
   title: string
   start: string
   end: string
-  link: string
+  link?: string
   id: string
 }
 
@@ -32,20 +32,18 @@ export const PROJECTS: Project[] = [
   {
     name: 'Kilo Code',
     description:
-      'Open-source AI coding agent. Raised $8M seed.',
+      'Open-source AI coding agent.',
     link: 'https://kilo.ai',
     id: 'project1',
   },
   {
     name: 'Alphadoc',
-    description: 'Developer documentation platform. Co-founded & led as CEO.',
-    link: 'https://www.crunchbase.com/organization/alphadoc',
+    description: 'Developer documentation platform.',
     id: 'project2',
   },
   {
     name: 'Onjo AI',
-    description: 'AI venture exploring the future of intelligent automation.',
-    link: '#',
+    description: 'AI agents for GTM.',
     id: 'project3',
   },
 ]
@@ -54,7 +52,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Kilo',
     title: 'Head of Growth',
-    start: '2024',
+    start: '2025',
     end: 'Present',
     link: 'https://kilo.ai',
     id: 'work1',
@@ -62,48 +60,44 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Alphadoc',
     title: 'Co-founder & CEO',
-    start: '2020',
+    start: '2022',
     end: '2024',
-    link: 'https://www.crunchbase.com/organization/alphadoc',
     id: 'work2',
   },
   {
     company: 'Onjo AI',
-    title: 'Founder',
-    start: '2019',
-    end: '2020',
-    link: '#',
+    title: 'Co-founder & CEO',
+    start: '2024',
+    end: '2024',
     id: 'work3',
   },
   {
     company: 'Founda Health',
-    title: 'Growth Lead',
-    start: '2018',
-    end: '2019',
+    title: 'CMO',
+    start: '2020',
+    end: '2021',
     link: 'https://founda.com',
     id: 'work4',
   },
   {
     company: 'Marketer Technologies',
     title: 'Head of Growth',
-    start: '2016',
-    end: '2018',
-    link: '#',
-    id: 'work5',
+    start: '2021',
+    end: '2022',
+    link: 'https://www.marketer.com/',
   },
   {
     company: 'Growth Tribe',
-    title: 'Growth Lead',
+    title: 'VP Growth',
     start: '2015',
-    end: '2016',
-    link: 'https://growthtribe.io',
+    end: '2020',
     id: 'work6',
   },
   {
     company: 'Rocket Internet / CityDeal (→ Groupon)',
     title: 'Early Employee',
     start: '2010',
-    end: '2015',
+    end: '2013',
     link: 'https://groupon.com',
     id: 'work7',
   },
@@ -111,9 +105,15 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'AI Agents Are Coming for Every Role',
+    description: 'Not to replace you, but to give you super powers.',
+    link: '/blog/ai-agents-are-coming-for-every-role',
+    uid: 'blog-3',
+  },
+  {
     title: 'How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role',
     description: 'Building an interactive pricing calculator with AI coding tools',
-    link: 'https://blog.kilo.ai/p/how-i-use-kilo-for-slack-and-code-reviewer',
+    link: '/blog/how-i-use-kilo-for-slack-and-code-reviewer',
     uid: 'blog-1',
   },
   {

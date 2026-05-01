@@ -69,9 +69,23 @@ export function Footer() {
   return (
     <footer className="mt-24 border-t border-zinc-100 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-zinc-500">
-          © {new Date().getFullYear()} Job Rietbergen. Built with ☕ in Amsterdam.
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className="text-xs text-zinc-500">
+            © {new Date().getFullYear()} Job Rietbergen.
+          </span>
+          <span className="text-xs text-zinc-400">
+            Photos by Wesley Verhoeve as part of the{' '}
+            <a
+              href="https://vliegwiel.nl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-zinc-600 dark:hover:text-zinc-300"
+            >
+              Flywheel project
+            </a>
+            .
+          </span>
+        </div>
         <div className="text-xs text-zinc-400">
           <ThemeSwitch />
         </div>

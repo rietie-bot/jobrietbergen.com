@@ -1,0 +1,96 @@
+export const metadata = {
+  title: 'How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role',
+  description:
+    'How I leveraged Kilo\'s tools to ship an interactive pricing calculator and several iterations in record time — without an engineering team.',
+  alternates: {
+    canonical: 'https://blog.kilo.ai/p/how-i-use-kilo-for-slack-and-code-reviewer',
+  },
+};
+
+# How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role
+
+### Here's how I leveraged Kilo's tools to ship a feature (and several iterations) in record time.
+
+*Jan 28, 2026 · by Job Rietbergen*
+
+---
+
+> This post originally appeared on the [Kilo Code blog](https://blog.kilo.ai/p/how-i-use-kilo-for-slack-and-code-reviewer).
+
+---
+
+When we launched Kilo Pass, our AI token subscription product, we received questions from users about how the pricing and free bonus credits mechanics worked. Rather than just adding explanatory text, I wanted to build an interactive calculator that showed the exact value proposition and mechanics, using the same backend logic our application uses.
+
+**Here's how I leveraged Kilo's tools to ship this feature (and several iterations) in record time.**
+
+![The finished Kilo Pass pricing calculator on the marketing site](/blog/how-i-use-kilo-for-slack-and-code-reviewer/01-kilo-pass-calculator.png)
+
+## Starting with Context: Kilo for Slack
+
+I fired up [Kilo for Slack](https://kilo.ai/slack) to get a summary of how our pricing logic was implemented in the backend repo:
+
+![Kilo for Slack summarising the backend pricing logic](/blog/how-i-use-kilo-for-slack-and-code-reviewer/02-kilo-slack-context.png)
+
+With this context, I asked Kilo for Slack to create a first iteration of the calculator for our marketing site, using the same logic it had just summarised:
+
+![Asking Kilo for Slack to build the first version of the calculator](/blog/how-i-use-kilo-for-slack-and-code-reviewer/03-kilo-slack-calculator-request.png)
+
+The initial version needed refinement. It was converting dollars into credits that weren't 1:1, but our pricing is very straightforward; credits equal exactly what you pay in dollars. After a few iterations in Slack, I had a working implementation ready to pull into my IDE.
+
+## Refining in VS Code
+
+I switched to VS Code and pulled in the latest commit. After some tweaking, I ended up with a clean version for annual pricing:
+
+![Annual pricing calculator in VS Code](/blog/how-i-use-kilo-for-slack-and-code-reviewer/04-annual-pricing-calculator.png)
+
+For the monthly version, I built an interactive slider so users could see exactly how much they save by staying on their subscription streak:
+
+![Interactive monthly slider showing bonus credit accumulation](/blog/how-i-use-kilo-for-slack-and-code-reviewer/05-monthly-slider.png)
+
+You can see the final result in action here: [kilo.ai/features/kilo-pass](https://kilo.ai/features/kilo-pass)
+
+## Shipping a Promotional Banner
+
+We had a promotional banner set up with PostHog, but I needed a new icon. I asked Kilo to suggest options:
+
+![Kilo suggesting icon options for the promotional banner](/blog/how-i-use-kilo-for-slack-and-code-reviewer/06-promotional-banner.png)
+
+After reviewing the options, I implemented the chosen icon and quickly deployed it. I then adapted the payload for the banner in PostHog, shipping the change in just 15 minutes:
+
+![The deployed promotional banner in PostHog](/blog/how-i-use-kilo-for-slack-and-code-reviewer/07-posthog-banner-deployed.png)
+
+## Updating User-Facing Copy
+
+The final piece was updating the notification wording in our IDE extension and the CLI. I asked Kilo to handle this update:
+
+![Kilo updating the notification copy across the IDE extension and CLI](/blog/how-i-use-kilo-for-slack-and-code-reviewer/08-updating-copy.png)
+
+The options are endless when you know how to leverage AI tools in product and growth work.
+
+## Iterating Fast on Promotional Changes
+
+A week later, we changed the welcome bonus (50% free credits) from 1 to 2 months. Because of the big success of Kilo Pass, we decided to extend it another week. I one-shotted the implementation across 3 pages and prepared to merge, all from Slack:
+
+![One-shotting the promotional change across 3 pages from Slack](/blog/how-i-use-kilo-for-slack-and-code-reviewer/09-one-shot-implementation.png)
+
+[Kilo Code Reviewer](https://kilo.ai/code-reviewer) gave me final confirmation that the changes were consistent and working properly. After an internal review, I quickly shipped it:
+
+![Kilo Code Reviewer confirming the changes are consistent](/blog/how-i-use-kilo-for-slack-and-code-reviewer/10-code-reviewer-confirmation.png)
+
+## Learning and Adapting
+
+Based on user feedback about what they liked and what wasn't clear, we went on to implement the same bonus percentages and ramp up for free credits on all the monthly plans. I created this using a mix of IDE and Kilo for Slack work, with [Kilo Code Reviewer](https://kilo.ai/code-reviewer) checking all the PRs before merging them:
+
+![Monthly plans with bonus credits rolled out across all tiers](/blog/how-i-use-kilo-for-slack-and-code-reviewer/11-monthly-plans-bonus.png)
+
+## The Result
+
+What traditionally might have taken days of back-and-forth with engineering happened in hours. I was able to:
+
+- Understand complex backend logic instantly
+- Generate working code implementations
+- Iterate rapidly based on user feedback and internal discussions
+- Catch inconsistencies before they shipped
+- Ship multiple versions of the [Kilo Pass](https://kilo.ai/features/kilo-pass) feature as our promotion evolved
+
+This is how one person in a growth role can move with the speed of a small engineering team.

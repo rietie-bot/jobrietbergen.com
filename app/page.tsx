@@ -98,8 +98,10 @@ function MagneticSocialLink({
 }) {
   return (
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
-      <a
+        <a
         href={link}
+        target="_blank"
+        rel="noopener noreferrer"
         className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-3 py-1.5 text-base text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
       >
         {children}
@@ -146,7 +148,7 @@ export default function Personal() {
           <div className="flex-1">
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
-              <a href="https://kilo.ai" className="underline dark:text-zinc-300">Kilo</a>,
+              <a href="https://kilo.ai" target="_blank" rel="noopener noreferrer" className="underline dark:text-zinc-300">Kilo</a>,
               an open-source coding agent. Previously founded Alphadoc and Onjo AI.
               Background in marketing with enough data and code skills to be dangerous.
             </p>
@@ -163,30 +165,44 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-xl font-medium">Ventures</h3>
         <div className="flex flex-col space-y-2">
-          {PROJECTS.map((project) => (
-            <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={project.id}
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div>
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {project.name}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {project.description}
-                  </p>
+          {PROJECTS.map((project) => {
+            const cardContent = (
+              <>
+                <Spotlight
+                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                  <div>
+                    <h4 className="font-normal dark:text-zinc-100">
+                      {project.name}
+                    </h4>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      {project.description}
+                    </p>
+                  </div>
                 </div>
+              </>
+            )
+            return project.link ? (
+              <a
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={project.id}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <div
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                key={project.id}
+              >
+                {cardContent}
               </div>
-            </a>
-          ))}
+            )
+          })}
         </div>
       </motion.section>
 
@@ -196,35 +212,49 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-xl font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
-            <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={job.id}
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {job.title}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {job.company}
+          {WORK_EXPERIENCE.map((job) => {
+            const jobContent = (
+              <>
+                <Spotlight
+                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                  <div className="relative flex w-full flex-row justify-between">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {job.title}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {job.company}
+                      </p>
+                    </div>
+                    <p className="text-zinc-600 dark:text-zinc-400">
+                      {job.start} - {job.end}
                     </p>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
-                  </p>
                 </div>
+              </>
+            )
+            return job.link ? (
+              <a
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                href={job.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={job.id}
+              >
+                {jobContent}
+              </a>
+            ) : (
+              <div
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                key={job.id}
+              >
+                {jobContent}
               </div>
-            </a>
-          ))}
+            )
+          })}
         </div>
       </motion.section>
 
@@ -249,6 +279,7 @@ export default function Personal() {
                 className="-mx-3 rounded-xl px-3 py-3"
                 href={post.link}
                 data-id={post.uid}
+                {...(post.link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               >
                 <div className="flex flex-col space-y-1">
                   <h4 className="font-normal dark:text-zinc-100">
