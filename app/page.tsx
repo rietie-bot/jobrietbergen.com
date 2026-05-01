@@ -1,4 +1,5 @@
 'use client'
+import { Fragment } from 'react'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -166,6 +167,7 @@ export default function Personal() {
         <h3 className="mb-5 text-xl font-medium">Ventures</h3>
         <div className="flex flex-col space-y-2">
           {PROJECTS.map((project) => {
+            const className = "relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
             const cardContent = (
               <>
                 <Spotlight
@@ -184,23 +186,18 @@ export default function Personal() {
                 </div>
               </>
             )
-            return project.link ? (
-              <a
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={project.id}
-              >
-                {cardContent}
-              </a>
-            ) : (
-              <div
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                key={project.id}
-              >
-                {cardContent}
-              </div>
+            return (
+              <Fragment key={project.id}>
+                {project.link ? (
+                  <a className={className} href={project.link} target="_blank" rel="noopener noreferrer">
+                    {cardContent}
+                  </a>
+                ) : (
+                  <div className={className}>
+                    {cardContent}
+                  </div>
+                )}
+              </Fragment>
             )
           })}
         </div>
@@ -213,6 +210,7 @@ export default function Personal() {
         <h3 className="mb-5 text-xl font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => {
+            const className = "relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
             const jobContent = (
               <>
                 <Spotlight
@@ -236,23 +234,18 @@ export default function Personal() {
                 </div>
               </>
             )
-            return job.link ? (
-              <a
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                href={job.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={job.id}
-              >
-                {jobContent}
-              </a>
-            ) : (
-              <div
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                key={job.id}
-              >
-                {jobContent}
-              </div>
+            return (
+              <Fragment key={job.id}>
+                {job.link ? (
+                  <a className={className} href={job.link} target="_blank" rel="noopener noreferrer">
+                    {jobContent}
+                  </a>
+                ) : (
+                  <div className={className}>
+                    {jobContent}
+                  </div>
+                )}
+              </Fragment>
             )
           })}
         </div>
