@@ -13,6 +13,7 @@ type WorkExperience = {
   start: string
   end: string
   link?: string
+  image?: string
   id: string
 }
 
@@ -34,16 +35,19 @@ export const PROJECTS: Project[] = [
     description:
       'Open-source AI coding agent.',
     link: 'https://kilo.ai',
+    image: '/logos/kilo_logo.jpeg',
     id: 'project1',
   },
   {
     name: 'Alphadoc',
     description: 'Developer documentation platform.',
+    image: '/logos/alphadoc_io_logo.jpeg',
     id: 'project2',
   },
   {
     name: 'Onjo AI',
     description: 'AI agents for GTM.',
+    image: '/logos/onjo_ai_logo.jpeg',
     id: 'project3',
   },
 ]
@@ -55,6 +59,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2025',
     end: 'Present',
     link: 'https://kilo.ai',
+    image: '/logos/kilo_logo.jpeg',
     id: 'work1',
   },
   {
@@ -62,6 +67,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Co-founder & CEO',
     start: '2022',
     end: '2024',
+    image: '/logos/alphadoc_io_logo.jpeg',
     id: 'work2',
   },
   {
@@ -69,6 +75,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Co-founder & CEO',
     start: '2024',
     end: '2024',
+    image: '/logos/onjo_ai_logo.jpeg',
     id: 'work3',
   },
   {
@@ -77,6 +84,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2020',
     end: '2021',
     link: 'https://founda.com',
+    image: '/logos/founda_logo.jpeg',
     id: 'work4',
   },
   {
@@ -85,6 +93,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2021',
     end: '2022',
     link: 'https://www.marketer.com/',
+    image: '/logos/marketer_com_logo.jpeg',
     id: 'work5',
   },
   {
@@ -92,6 +101,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'VP Growth',
     start: '2015',
     end: '2020',
+    image: '/logos/growth_tribe_logo.jpeg',
     id: 'work6',
   },
   {
@@ -100,6 +110,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     start: '2010',
     end: '2013',
     link: 'https://groupon.com',
+    image: '/logos/rocket_logo.jpeg',
     id: 'work7',
   },
 ]
@@ -145,3 +156,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ]
 
 export const EMAIL = 'job@jobrietbergen.com'
+
