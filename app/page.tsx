@@ -1,6 +1,6 @@
 'use client'
-import { Fragment } from 'react'
-import { motion } from 'motion/react'
+import { Fragment, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -126,6 +126,50 @@ function MagneticSocialLink({
   )
 }
 
+const HERO_PHOTOS: { src: string; alt: string }[] = [
+  { src: '/photos/photo-1.jpg', alt: 'Job Rietbergen — cover photo' },
+  { src: '/photos/photo-2.jpg', alt: 'Job Rietbergen — portrait' },
+  { src: '/photos/photo-3.jpg', alt: 'Job Rietbergen — profile' },
+  { src: '/photos/photo-4.jpg', alt: 'Job Rietbergen — Amsterdam' },
+]
+
+const STRIP_PHOTOS: { src: string; alt: string }[] = [
+  { src: '/photos/photo-2.jpg', alt: 'Job Rietbergen — portrait' },
+  { src: '/photos/photo-1.jpg', alt: 'Job Rietbergen — cover photo' },
+  { src: '/photos/photo-4.jpg', alt: 'Job Rietbergen — Amsterdam' },
+  { src: '/photos/photo-3.jpg', alt: 'Job Rietbergen — profile' },
+]
+
+function RotatingPhoto() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % HERO_PHOTOS.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const photo = HERO_PHOTOS[index]
+
+  return (
+    <div className="relative w-40 h-40 sm:w-48 sm:h-48 shrink-0 rounded-2xl overflow-hidden ring-1 ring-zinc-200/50 dark:ring-zinc-800/50">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={photo.src}
+          alt={photo.alt}
+          className="absolute inset-0 w-full h-full object-cover object-[center_20%]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+        />
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export default function Personal() {
   return (
     <motion.main
@@ -139,13 +183,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex flex-col sm:flex-row gap-8 items-start">
-          <div className="shrink-0">
-            <img
-              src="/profile.jpg"
-              alt="Job Rietbergen"
-              className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover object-[center_20%] ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
-            />
-          </div>
+          <RotatingPhoto />
           <div className="flex-1">
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
@@ -175,13 +213,22 @@ export default function Personal() {
                   size={64}
                 />
                 <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                  <div>
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {project.name}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {project.description}
-                    </p>
+                  <div className="flex items-center gap-3">
+                    {project.image && (
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="h-9 w-9 rounded-[2px] object-cover shrink-0"
+                      />
+                    )}
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {project.name}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </>
@@ -207,6 +254,29 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <div className="flex gap-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6">
+          {STRIP_PHOTOS.map((photo, i) => (
+            <motion.div
+              key={photo.src}
+              className="shrink-0 rounded-xl overflow-hidden ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
+              style={{ rotate: (i % 2 === 0 ? 1.2 : -1.2) }}
+              whileHover={{ scale: 1.03, rotate: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="h-52 w-auto object-cover"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h3 className="mb-5 text-xl font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => {
@@ -218,16 +288,25 @@ export default function Personal() {
                   size={64}
                 />
                 <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                  <div className="relative flex w-full flex-row justify-between">
-                    <div>
-                      <h4 className="font-normal dark:text-zinc-100">
-                        {job.title}
-                      </h4>
-                      <p className="text-zinc-500 dark:text-zinc-400">
-                        {job.company}
-                      </p>
+                  <div className="relative flex w-full flex-row justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      {job.image && (
+                        <img
+                          src={job.image}
+                          alt={job.company}
+                          className="h-9 w-9 rounded-[2px] object-cover shrink-0"
+                        />
+                      )}
+                      <div>
+                        <h4 className="font-normal dark:text-zinc-100">
+                          {job.title}
+                        </h4>
+                        <p className="text-zinc-500 dark:text-zinc-400">
+                          {job.company}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-zinc-600 dark:text-zinc-400">
+                    <p className="text-zinc-600 dark:text-zinc-400 shrink-0">
                       {job.start} - {job.end}
                     </p>
                   </div>
