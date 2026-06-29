@@ -7,6 +7,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPosts = [
     {
+      url: `${baseUrl}/blog/we-predicted-the-100kyr-per-dev-ai`,
+      lastModified: new Date('2026-06-23'),
+    },
+    {
+      url: `${baseUrl}/blog/claude-fable-5-vs-gpt-5-5`,
+      lastModified: new Date('2026-06-13'),
+    },
+    {
+      url: `${baseUrl}/blog/the-github-copilot-bill-came-due`,
+      lastModified: new Date('2026-06-05'),
+    },
+    {
+      url: `${baseUrl}/blog/your-coding-agent-will-get-ripped`,
+      lastModified: new Date('2026-06-02'),
+    },
+    {
       url: `${baseUrl}/blog/ai-agents-are-coming-for-every-role`,
       lastModified: new Date('2026-04-10'),
     },

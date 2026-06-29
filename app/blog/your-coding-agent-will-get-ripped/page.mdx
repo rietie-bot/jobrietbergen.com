@@ -1,0 +1,66 @@
+import { CrossPostNotice } from '@/components/cross-post-notice'
+
+export const metadata = {
+  title: 'Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It.',
+  description:
+    'Coding tools, interfaces, models, and pricing will keep changing. Durable workflows need to survive vendor pivots across surfaces and models.',
+  alternates: {
+    canonical: 'https://blog.kilo.ai/p/your-coding-agent-will-get-ripped',
+  },
+};
+
+# Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It.
+
+*Jun 2, 2026 · by Job Rietbergen*
+
+---
+
+[Roo Code shut down May 15th](https://x.com/mattrubens/status/2046636598859559114). 3 million installs, 23,000 GitHub stars, one of the most influential open-source agents of the last 18 months. Their reasoning, in their own words: “IDEs are not the future of coding.” They’re going all-in on a cloud agent called Roomote.
+
+Same week, Google shipped Antigravity 2.0 as a background update. [Users launched their IDE and got a chatbot instead](https://www.0xsid.com/blog/antigravity-bait-n-switch). The old binary still existed, buried at the bottom of a download page, but the new version aggressively rewrote application paths, so running both was impossible without a full purge. Chat histories and settings didn’t survive the transition. [One user on the Antigravity forum](https://discuss.ai.google.dev/t/antigravity-2-0-unfinished-chatbot-ui-rather-than-ide/145828?ref=hackernoon.com) said it cleanly: updates shouldn’t hijack your software.
+
+These aren’t the same story. Roo made a strategic bet on where coding is going. Google made a product decision that ran over its users. But from a developer’s seat, the outcome rhymes. The tool you built workflows around isn’t the tool you have anymore.
+
+## The curve is wider than it looks
+
+While Roo was archiving, the Kilo team was at an open-source summit talking to [engineers who had barely touched a coding agent](https://blog.kilo.ai/p/the-ai-coding-revolution-hasnt-started). Curious, capable people, building real software, still doing same-old development. Some had heard of Cursor. A few had tried Copilot. They wanted to know what was good and how to start.
+
+At the other end of the same curve: [developers running five agents](https://blog.kilo.ai/p/ai-agents-are-coming-for-every-role) on separate git worktrees, checking back after lunch. Frameworks like Paperclip and [Gas Town](https://kilo.ai/gastown) are arising that will run a whole engineering org on agents with humans on call.
+
+Most people are somewhere in between, and they move along the curve over time. An engineer tries a coding agent, hits the rough edges, shrugs it off. Months later they try again. The models have improved, the tooling has improved, and the skeptic is slowly won over. Some prefer to stay in the loop, directing every move. Others prefer to set an objective and check back later. Agent swarms and first-time Cursor users are both expanding populations.
+
+## Nobody is converging on one interface
+
+The latest [Pragmatic Engineer survey](https://aiproductivity.ai/news/pragmatic-engineer-survey-ai-tooling-2026/?ref=hackernoon.com) of ~900 engineers is the cleanest snapshot we have. 95% use AI tools weekly. 75% use AI for at least half their work. 70% use between two and four AI tools at once. Another 15% use five or more. [JetBrains 2025](https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/?ref=hackernoon.com) says the same: developers move between tools by task.
+
+A chatbot for exploration. An [IDE agent for inline edits](https://kilo.ai/install). A [CLI](https://kilo.ai/cli) for terminal-heavy work. A [cloud agent](https://kilo.ai/cloud) for things that run while you close your laptop. Developers aren’t all consolidating to one surface: they are spreading across more surfaces, all at once.
+
+A founder I talked with recently migrated off Cursor. Not over quality, over speed. He could feel the round-trip in his hands. He’s now on a mix: CLI for fast loops, IDE for inline edits, cloud agents running while he’s in meetings. His bill dropped, and he no longer depends on a single tool.
+
+## The economics are about to make this harder
+
+[The era of free compute is crumbling](https://blog.kilo.ai/p/tokenmaxxing-without-breaking-the). Free tiers are quietly disappearing. Token prices are on CFO radars. The “route everything through the biggest model” posture made sense when somebody else was paying.
+
+The pragmatic next 12 months: not every request goes through frontier models like Opus 4.7. The boring middle of the task graph (lint fixes, formatting, simple refactors, test scaffolding) can be handled by smaller, cheaper, often open-weight models. The hard stuff goes to the frontier. Privacy-sensitive or air-gapped work goes to local.
+
+Single-provider lock-in means their next pricing or product change is yours too.
+
+## Where Kilo fits
+
+[Kilo](https://kilo.ai/) started as a Roo fork. The [new extension](https://blog.kilo.ai/p/were-back-on-product-hunt-new-vs-code) went GA on April 2, rebuilt on a shared OpenCode server so CLI, VS Code, and Cloud Agents run the same agent loop. Your kilo.jsonc is shared. Sessions carry between them. Moving from “edit this in the editor” to “run this in the cloud” is the same agent with the same context, not a new tool to teach from scratch.
+
+We’ve built for autonomous workflows too, because a lot of work is heading there. We’re not trying to pick the winning surface or model. We built Kilo so the agent already knows what you’re doing regardless of where you’re working. When the next pivot happens, your workflow comes with you.
+
+**Did you know?** You can bring your DeepSeek, MiniMax, [z.ai](http://z.ai), and 16+ other provider API keys directly into the Kilo Gateway and unlock additional benefits. [Learn more](https://blog.kilo.ai/p/why-use-byok-through-kilo-gateway).
+
+## The bottom of the first inch
+
+We get to see inside a lot of organizations figuring this out, through speedruns, migrations, rolling coding agents out across whole engineering orgs. The pattern is consistent. The teams getting real leverage aren’t the ones who picked the “winning” tool. They gave their developers tools across every surface, let them work with the models that fit, and didn’t let vendor pivots pull it out from under them.
+
+Agent swarms are real, and a lot of work is moving toward them. Median developers still figuring out Cursor are also real. Both ends of the curve are growing at once, and that’s the market to build for.
+
+The teams that build workflows resilient enough to survive the next pivot, across surfaces, across models, across whatever vendor decision lands next, are the ones who’ll still be moving when the ground shifts again.
+
+---
+
+<CrossPostNotice url="https://blog.kilo.ai/p/your-coding-agent-will-get-ripped" />

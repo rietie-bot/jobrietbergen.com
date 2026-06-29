@@ -19,6 +19,7 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  SPEAKING_PHOTOS,
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -140,6 +141,16 @@ const STRIP_PHOTOS: { src: string; alt: string }[] = [
   { src: '/photos/photo-3.jpg', alt: 'Job Rietbergen — profile' },
 ]
 
+const SPEAKING_IMAGE_ROTATIONS = [-1.2, 1.2, 1, -1.1, 1.15, -0.9]
+
+const SPEAKING_FEATURE_CARD_CLASS =
+  'col-span-6 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-3'
+
+const SPEAKING_SUPPORT_CARD_CLASS =
+  'col-span-3 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-1'
+
+const SPEAKING_IMAGE_CLASS = 'w-full object-cover'
+
 function RotatingPhoto() {
   const [index, setIndex] = useState(0)
 
@@ -175,7 +186,6 @@ export default function Personal() {
     <motion.main
       className="space-y-24"
       variants={VARIANTS_CONTAINER}
-      initial="hidden"
       animate="visible"
     >
       <motion.section
@@ -270,6 +280,59 @@ export default function Personal() {
               />
             </motion.div>
           ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <div className="relative overflow-hidden rounded-3xl bg-zinc-950 p-5 text-white ring-1 ring-zinc-900 dark:bg-zinc-900 dark:ring-zinc-800">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_88%_20%,rgba(161,161,170,0.24),transparent_28%),linear-gradient(135deg,rgba(63,63,70,0.16),transparent_45%)]" />
+          <div className="relative space-y-6">
+            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-xl">
+                <p className="mb-2 text-sm uppercase tracking-[0.2em] text-zinc-400">
+                  Speaking
+                </p>
+                <h3 className="mb-4 text-3xl font-medium tracking-tight">
+                  Practical talks on AI, growth, and building from zero to one.
+                </h3>
+                <p className="text-base leading-relaxed text-zinc-300">
+                  I speak at events, podcasts, panels, and team sessions about applying AI agents in real workflows, building growth systems, and turning technical products into companies people care about.
+                </p>
+              </div>
+              <a
+                href={`mailto:${EMAIL}?subject=Speaking%20request`}
+                className="inline-flex w-fit shrink-0 rounded-full bg-white px-4 py-2 text-sm text-zinc-950 transition-colors hover:bg-zinc-200"
+              >
+                Invite me to speak
+              </a>
+            </div>
+
+            <div className="grid grid-cols-6 gap-3">
+              {SPEAKING_PHOTOS.slice(0, 6).map((photo, i) => (
+                <motion.div
+                  key={photo.src}
+                  className={
+                    i === 0 || i === 1
+                      ? SPEAKING_FEATURE_CARD_CLASS
+                      : SPEAKING_SUPPORT_CARD_CLASS
+                  }
+                  style={{ rotate: SPEAKING_IMAGE_ROTATIONS[i] }}
+                  whileHover={{ scale: 1.03, rotate: 0, zIndex: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className={SPEAKING_IMAGE_CLASS}
+                    style={{ aspectRatio: i === 0 || i === 1 ? '16 / 11' : '4 / 3' }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.section>
 
