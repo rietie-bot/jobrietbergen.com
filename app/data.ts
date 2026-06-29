@@ -29,6 +29,11 @@ type SocialLink = {
   link: string
 }
 
+type SpeakingPhoto = {
+  src: string
+  alt: string
+}
+
 export const PROJECTS: Project[] = [
   {
     name: 'Kilo Code',
@@ -117,6 +122,30 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'We predicted the $100k/yr-per-dev AI bill. Now the winners are routing around it.',
+    description: 'Why model routing is becoming the enterprise cost-control layer for AI coding.',
+    link: '/blog/we-predicted-the-100kyr-per-dev-ai',
+    uid: 'blog-7',
+  },
+  {
+    title: 'Claude Fable 5 vs GPT-5.5: better planning, similar execution',
+    description: 'Claude Fable 5 wrote the sharper plan, but GPT-5.5 matched execution at lower cost.',
+    link: '/blog/claude-fable-5-vs-gpt-5-5',
+    uid: 'blog-6',
+  },
+  {
+    title: "The GitHub Copilot Bill Came Due. Here's What Engineering Leaders Should Do.",
+    description: 'The era of free compute ended, and enterprise teams need model freedom and spend control.',
+    link: '/blog/the-github-copilot-bill-came-due',
+    uid: 'blog-5',
+  },
+  {
+    title: 'Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It.',
+    description: 'Durable AI coding workflows need to survive vendor pivots across tools, models, and surfaces.',
+    link: '/blog/your-coding-agent-will-get-ripped',
+    uid: 'blog-4',
+  },
+  {
     title: 'AI Agents Are Coming for Every Role',
     description: 'Not to replace you, but to give you super powers.',
     link: '/blog/ai-agents-are-coming-for-every-role',
@@ -155,5 +184,31 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
-export const EMAIL = 'job@jobrietbergen.com'
+export const SPEAKING_PHOTOS: SpeakingPhoto[] = [
+  {
+    src: '/speaking/speaker-job-rietbergen-4.jpeg',
+    alt: 'Job Rietbergen speaking on stage at an AI event',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-2.jpg',
+    alt: 'Job Rietbergen presenting to an audience',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-1.jpg',
+    alt: 'Audience watching Job Rietbergen speak at an event',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-3.jpeg',
+    alt: 'Job Rietbergen giving a talk',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-5.jpeg',
+    alt: 'Job Rietbergen on stage during a presentation',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-6.jpeg',
+    alt: 'Job Rietbergen presenting with slides',
+  },
+]
 
+export const EMAIL = 'job@jobrietbergen.com'
