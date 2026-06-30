@@ -84,21 +84,21 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work3',
   },
   {
-    company: 'Founda Health',
-    title: 'CMO',
-    start: '2020',
-    end: '2021',
-    link: 'https://founda.com',
-    image: '/logos/founda_logo.jpeg',
-    id: 'work4',
-  },
-  {
     company: 'Marketer Technologies',
     title: 'Head of Growth',
     start: '2021',
     end: '2022',
     link: 'https://www.marketer.com/',
     image: '/logos/marketer_com_logo.jpeg',
+    id: 'work4',
+  },
+  {
+    company: 'Founda Health',
+    title: 'CMO',
+    start: '2020',
+    end: '2021',
+    link: 'https://founda.com',
+    image: '/logos/founda_logo.jpeg',
     id: 'work5',
   },
   {
@@ -186,24 +186,24 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const SPEAKING_PHOTOS: SpeakingPhoto[] = [
   {
-    src: '/speaking/speaker-job-rietbergen-4.jpeg',
-    alt: 'Job Rietbergen speaking on stage at an AI event',
-  },
-  {
     src: '/speaking/speaker-job-rietbergen-2.jpg',
     alt: 'Job Rietbergen presenting to an audience',
+  },
+  {
+    src: '/speaking/speaker-job-rietbergen-4.jpeg',
+    alt: 'Job Rietbergen speaking on stage at an AI event',
   },
   {
     src: '/speaking/speaker-job-rietbergen-1.jpg',
     alt: 'Audience watching Job Rietbergen speak at an event',
   },
   {
-    src: '/speaking/speaker-job-rietbergen-3.jpeg',
-    alt: 'Job Rietbergen giving a talk',
+    src: '/speaking/speaker-job-rietbergen-7.jpeg',
+    alt: 'Job Rietbergen speaking at an event',
   },
   {
-    src: '/speaking/speaker-job-rietbergen-5.jpeg',
-    alt: 'Job Rietbergen on stage during a presentation',
+    src: '/speaking/speaker-job-rietbergen-3.jpeg',
+    alt: 'Job Rietbergen giving a talk',
   },
   {
     src: '/speaking/speaker-job-rietbergen-6.jpeg',
