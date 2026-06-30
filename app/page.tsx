@@ -144,10 +144,10 @@ const STRIP_PHOTOS: { src: string; alt: string }[] = [
 const SPEAKING_IMAGE_ROTATIONS = [-1.2, 1.2, 1, -1.1, 1.15, -0.9]
 
 const SPEAKING_FEATURE_CARD_CLASS =
-  'col-span-6 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-3'
+  'col-span-12 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-6'
 
 const SPEAKING_SUPPORT_CARD_CLASS =
-  'col-span-3 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-1'
+  'col-span-6 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/15 sm:col-span-3'
 
 const SPEAKING_IMAGE_CLASS = 'w-full object-cover'
 
@@ -196,10 +196,14 @@ export default function Personal() {
           <RotatingPhoto />
           <div className="flex-1">
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Builder and growth operator based in Amsterdam. Currently leading growth at{' '}
+              Builder and growth leader based in Amsterdam. Currently leading growth at{' '}
               <a href="https://kilo.ai" target="_blank" rel="noopener noreferrer" className="underline dark:text-zinc-300">Kilo</a>,
               an open-source coding agent. Previously founded Alphadoc and Onjo AI.
-              Background in marketing with enough data and code skills to be dangerous.
+              I&apos;m hands-on across growth, data, product, and engineering.
+            </p>
+            <p className="mt-4 text-sm font-medium leading-relaxed text-zinc-900 dark:text-zinc-100">
+              15 years experience building and growing venture-scale companies.
+              I&apos;ve gone from zero to exit multiple times.
             </p>
             <p className="mt-4 text-base italic text-zinc-500 dark:text-zinc-500">
               &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
@@ -303,14 +307,21 @@ export default function Personal() {
                 </p>
               </div>
               <a
-                href={`mailto:${EMAIL}?subject=Speaking%20request`}
+                href="#connect"
+                onClick={(event) => {
+                  event.preventDefault()
+                  window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth',
+                  })
+                }}
                 className="inline-flex w-fit shrink-0 rounded-full bg-white px-4 py-2 text-sm text-zinc-950 transition-colors hover:bg-zinc-200"
               >
                 Invite me to speak
               </a>
             </div>
 
-            <div className="grid grid-cols-6 gap-3">
+            <div className="grid grid-cols-12 gap-3">
               {SPEAKING_PHOTOS.slice(0, 6).map((photo, i) => (
                 <motion.div
                   key={photo.src}
@@ -337,6 +348,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="connect"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
