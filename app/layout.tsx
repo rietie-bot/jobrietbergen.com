@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} bg-white antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -49,7 +49,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
+          <div className="flex min-h-screen w-full flex-col text-[17px] leading-relaxed font-[family-name:var(--font-inter-tight)]">
             <div className="relative mx-auto w-full max-w-screen-md flex-1 px-6 pt-20">
               <Header />
               {children}
