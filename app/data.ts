@@ -114,7 +114,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Early Employee',
     start: '2010',
     end: '2013',
-    link: 'https://groupon.com',
+    link: 'https://www.rocket-internet.com/',
     image: '/logos/rocket_logo.jpeg',
     id: 'work7',
   },
