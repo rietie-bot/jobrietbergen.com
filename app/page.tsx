@@ -195,17 +195,17 @@ export default function Personal() {
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <RotatingPhoto />
           <div className="flex-1">
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <p className="text-lg leading-relaxed text-zinc-700 sm:text-xl dark:text-zinc-300">
               Builder and growth leader based in Amsterdam. Currently leading growth at{' '}
               <a href="https://kilo.ai" target="_blank" rel="noopener noreferrer" className="underline dark:text-zinc-300">Kilo</a>,
               an open-source coding agent. Previously founded Alphadoc and Onjo AI.
               I&apos;m hands-on across growth, data, product, and engineering.
             </p>
-            <p className="mt-4 text-sm font-medium leading-relaxed text-zinc-900 dark:text-zinc-100">
+            <p className="mt-4 text-base font-medium leading-relaxed text-zinc-900 sm:text-lg dark:text-zinc-100">
               15 years experience building and growing venture-scale companies.
               I&apos;ve gone from zero to exit multiple times.
             </p>
-            <p className="mt-4 text-base italic text-zinc-500 dark:text-zinc-500">
+            <p className="mt-4 text-base italic leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
               &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
             </p>
           </div>
@@ -239,7 +239,7 @@ export default function Personal() {
                       <h4 className="font-normal dark:text-zinc-100">
                         {project.name}
                       </h4>
-                      <p className="text-zinc-500 dark:text-zinc-400">
+                      <p className="text-[15px] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
                         {project.description}
                       </p>
                     </div>
@@ -262,6 +262,26 @@ export default function Personal() {
             )
           })}
         </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <figure className="relative overflow-hidden rounded-3xl bg-zinc-950 p-6 text-white ring-1 ring-zinc-900 dark:bg-zinc-900 dark:ring-zinc-800 sm:p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_88%_10%,rgba(161,161,170,0.22),transparent_30%)]" />
+          <div className="relative">
+            <blockquote className="text-xl leading-relaxed tracking-tight text-zinc-100 sm:text-2xl">
+              &ldquo;Job took our growth from near zero to over 3 million users in 13 months. He&rsquo;s sharp, direct, and gets things done without needing hand-holding. A strong mix of growth leadership and hands-on execution.&rdquo;
+            </blockquote>
+            <figcaption className="mt-6 border-t border-white/10 pt-4">
+              <div className="font-medium text-white">Sid Sijbrandij</div>
+              <div className="text-sm text-zinc-400">
+                Co-founder of GitLab and Kilo Code
+              </div>
+            </figcaption>
+          </div>
+        </figure>
       </motion.section>
 
       <motion.section
@@ -302,7 +322,7 @@ export default function Personal() {
                 <h3 className="mb-4 text-3xl font-medium tracking-tight">
                   Practical talks on AI, growth, and building from zero to one.
                 </h3>
-                <p className="text-base leading-relaxed text-zinc-300">
+                <p className="text-[17px] leading-relaxed text-zinc-300">
                   I speak at events, podcasts, panels, and team sessions about applying AI agents in real workflows, building growth systems, and turning technical products into companies people care about.
                 </p>
               </div>
@@ -376,12 +396,12 @@ export default function Personal() {
                         <h4 className="font-normal dark:text-zinc-100">
                           {job.title}
                         </h4>
-                        <p className="text-zinc-500 dark:text-zinc-400">
+                        <p className="text-[15px] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
                           {job.company}
                         </p>
                       </div>
                     </div>
-                    <p className="text-zinc-600 dark:text-zinc-400 shrink-0">
+                    <p className="shrink-0 text-[15px] text-zinc-600 sm:text-base dark:text-zinc-400">
                       {job.start} - {job.end}
                     </p>
                   </div>
@@ -432,7 +452,7 @@ export default function Personal() {
                   <h4 className="font-normal dark:text-zinc-100">
                     {post.title}
                   </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-[15px] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
                     {post.description}
                   </p>
                 </div>
@@ -447,7 +467,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-xl font-medium">Connect</h3>
-        <p className="mb-5 text-lg text-zinc-600 dark:text-zinc-400">
+        <p className="mb-5 text-lg leading-relaxed text-zinc-700 sm:text-xl dark:text-zinc-300">
           Feel free to contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}

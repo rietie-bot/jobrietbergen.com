@@ -1,0 +1,90 @@
+import { CrossPostNotice } from '@/components/cross-post-notice'
+
+export const metadata = {
+  title: "Why we won't see another DeepSeek moment anytime soon",
+  description: 'Frontier-class open models increase demand for scarce compute, making model and provider routing more important than ever.',
+  alternates: {
+    canonical: 'https://blog.kilo.ai/p/no-second-deekseek-moment',
+  },
+  openGraph: {
+    images: [
+      {
+        url: '/blog/no-second-deekseek-moment/meta-image.jpg',
+        width: 1200,
+        height: 675,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/blog/no-second-deekseek-moment/meta-image.jpg'],
+  },
+};
+
+# Why we won't see another DeepSeek moment anytime soon
+
+*Jul 21, 2026 · by Job Rietbergen*
+
+---
+
+![AI data center infrastructure](/blog/no-second-deekseek-moment/01-ai-data-center.png)
+
+In January 2025 the world saw the stock market collapsing with the 'DeepSeek moment'. What happened: DeepSeek released an open weight model making a big leap in capabilities compared to predecessors. The result: NVIDIA lost about $600B in value on a single day. The logic from the market was: if great models can be made cheap and open, who needs that enormous amount of compute? Now, eighteen months later, recently released open models like GLM-5.2 and Kimi K3 are giving a similar shockwave to the AI market, but my prediction is that this time the stock market won't collapse, more like the opposite.
+
+Kimi K3 hit #8 on the OpenRouter leaderboard within a few days after release, doing ~155B tokens per day. And also [on the benchmarks](https://artificialanalysis.ai/models), the model performs exceptionally well, with only Claude Fable 5 and GPT-5.6 having a higher intelligence score on Artificial Analysis. We are seeing a similar [leap in capabilities at Kilo](https://blog.kilo.ai/p/kimi-k3).
+
+![Kimi K3 benchmark results](/blog/no-second-deekseek-moment/02-kimi-k3-benchmarks.png)
+
+So all of that is interesting, but aside from intelligence there's a lot more to take into consideration. And these two charts tell an interesting story:
+
+![Model intelligence and speed comparison charts](/blog/no-second-deekseek-moment/03-intelligence-speed-comparison.png)
+
+To understand the effectiveness of a model, you need to combine intelligence with cost and performance. And when you do that, the picture starts to look very different for Kimi K3: the model looks stellar on raw intelligence, but isn't even to be found on the speed chart. That's why, for [KiloBench](https://kilo.ai/kilobench), we're looking at cost vs performance (in the Kilo harness) and popularity combined.
+
+![KiloBench cost and performance analysis](/blog/no-second-deekseek-moment/04-kilobench-cost-performance.png)
+
+This week, Moonshot AI posted [this](https://x.com/Kimi_Moonshot/status/2078855608565207130):
+
+![Moonshot AI capacity announcement](/blog/no-second-deekseek-moment/05-moonshot-capacity-announcement.png)
+
+The takeaway: even though the model is high on intelligence, performance metrics fell off a cliff. Throughput went from 30 tokens per second to 13. Time to first token increased to 20+ seconds. Moonshot paused new subscriptions to protect existing users and started splitting its plans to divide capacity between chat and coding.
+
+So a frontier-class open model launched, and instead of relieving pressure on compute, it did the opposite. The DeepSeek moment made people believe that open models would make compute worthless, when in reality these high intelligence models like Kimi K3 show that it might actually be the only thing that matters.
+
+# Cheaper models ignite demand
+
+Frontier pricing has fallen from around $60 per million tokens three years ago to somewhere between $15 and $30 today, a 4-5x decline. In that same window, demand for frontier intelligence grew by at least three orders of magnitude, and measured capability (how long a task a model can complete on its own) went up roughly 32x by METR's tracking.
+
+So put simply, every time the frontier gets better and a little cheaper, the world finds a ton more to do with it. Cheaper tokens don't reduce the bill, they expand the set of work worth running until you end up using more compute than before. Satya Nadella called this Jevons paradox the week DeepSeek hit, so that's not the interesting part anymore.
+
+# The scarce thing was never the model
+
+Before DeepSeek, everyone assumed the closed frontier model was the moat. After DeepSeek, the assumption flipped: open models commoditize the frontier, so the moat is gone. And both are wrong. Kimi K3 is open and near the top of the intelligence charts, but many people underestimate how much compute-backed capacity it takes to actually serve a model with this many parameters.
+
+And that compute capacity is expensive and slow to build. As Menlo Ventures partner [Deedy Das shared](https://www.linkedin.com/feed/update/urn:li:activity:7484641226525286400/), serving even a quantized 2.8-trillion-parameter model like K3 runs roughly $500K in GPUs at the low end, and closer to $4M for the rack you'd actually want. Neocloud providers are signing 3-5 year commitments that require serious upfront payments, and the market is taking them. Smaller buyers supposedly get sent away.
+
+Open weight models are great, but you still need the hardware to host them competitively.
+
+# Capacity is scarce and volatile
+
+The part that should worry anyone building on top of these models: it's not just compute that is tight, capacity as a whole moves under your feet.
+
+Some model providers get throttled by their own success, but Claude Fable 5, the [best coding model on the market the week it launched](https://blog.kilo.ai/p/we-predicted-the-100kyr-per-dev-ai), was pulled for everyone by an export-control directive straight from the US government. And GitHub Copilot implemented usage-based billing that turned a fixed seat cost into a massive and unpredictable bill. What to take away from all of that: a model can get slower, pricier, or vanish, with no notice.
+
+# Why this points to routing
+
+If capacity is the scarce and volatile thing, the winning move is making sure you're vendor and provider agnostic.
+
+The market is starting to realize this and look for an answer. Routing sends each task to whatever model fits, and increasingly to the provider that has capacity to serve it best. It has shown up across a wave of product launches lately, and the interest is picking up fast.
+
+Enterprises need the same thing with more at stake: the freedom to route across any model, governed and carried all the way to production. It only pays off, though, if the tooling has the freedom to route widely enough to matter. A layer locked to one provider solves nothing.
+
+# The crunch already arrived
+
+So no, I don't think we get another DeepSeek moment, at least not the version the market keeps bracing for. A cheap open model won't make compute worthless, because the better and cheaper models get, the more compute the world wants. What's coming instead is the capacity crunch.
+
+You can't control who wins the compute wars, so you better make sure that you're not betting your whole workflow on a single model or provider.
+
+---
+
+<CrossPostNotice url="https://blog.kilo.ai/p/no-second-deekseek-moment" />

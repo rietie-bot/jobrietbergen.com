@@ -7,6 +7,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPosts = [
     {
+      url: `${baseUrl}/blog/open-weights-is-all-you-need`,
+      lastModified: new Date('2026-07-31'),
+    },
+    {
+      url: `${baseUrl}/blog/kimi-k3-grok-45-built-the-same-database`,
+      lastModified: new Date('2026-07-30'),
+    },
+    {
+      url: `${baseUrl}/blog/auto-model-vs-picking-your-own`,
+      lastModified: new Date('2026-07-27'),
+    },
+    {
+      url: `${baseUrl}/blog/no-second-deekseek-moment`,
+      lastModified: new Date('2026-07-21'),
+    },
+    {
+      url: `${baseUrl}/blog/ai-creates-jobs-compute-bill`,
+      lastModified: new Date('2026-07-06'),
+    },
+    {
       url: `${baseUrl}/blog/we-predicted-the-100kyr-per-dev-ai`,
       lastModified: new Date('2026-06-23'),
     },
