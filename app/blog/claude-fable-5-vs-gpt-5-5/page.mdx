@@ -23,6 +23,8 @@ export const metadata = {
 
 Instead of doing yet another end-to-end coding comparison against GPT-5.5, we split the work into two rounds. Both models planned the same service, we scored the plans against a rubric, and then both models implemented the winning plan from identical starting points in Kilo Code CLI.
 
+![Benchmark table comparing Claude Fable and Mythos with leading models](/blog/claude-fable-5-vs-gpt-5-5/01-model-benchmarks.webp)
+
 **TL;DR:** Claude Fable 5 wrote the better plan (9.1 vs 8.3 on our rubric), but when both models implemented that same plan, both passed all 15 of our acceptance checks and produced identical rollout behavior, with GPT-5.5 spending $6.30 to Claude Fable 5’s $16.66. **Planning with Claude Fable 5 and implementing with GPT-5.5 produced the same service for 59% less than using Claude Fable 5 for both phases.**
 
 # Why Split Planning From Implementation
@@ -30,6 +32,8 @@ Instead of doing yet another end-to-end coding comparison against GPT-5.5, we sp
 Most model comparisons run end-to-end, which makes it hard to tell whether a bad result came from a bad plan or bad execution. Separating the phases lets us measure three things with the same inputs. **How do the models compare at planning? How do they compare when implementing the exact same plan? And does mixing them (one model plans, the other implements) actually work?**
 
 That last question matters for cost. The two models sit at meaningfully different price points:
+
+![Claude Fable 5 and GPT-5.5 pricing comparison](/blog/claude-fable-5-vs-gpt-5-5/02-model-pricing.png)
 
 Both of these are frontier models, of course. GPT-5.5 is OpenAI’s newest flagship and a strong coding model in its own right, at a lower per-token price. The question is whether the most expensive model on the market needs to be in both phases of the workflow.
 
@@ -57,6 +61,8 @@ Each model got the same prompt in a fresh Kilo Code CLI session, both at High re
 >
 > Please write me a very detailed plan in plan.md that I can hand to a developer to build from.
 
+![Kilo Code CLI running the planning prompt with Claude Fable 5](/blog/claude-fable-5-vs-gpt-5-5/03-claude-planning-session.png)
+
 *Kilo Code CLI session running the planning prompt with Claude Fable 5.*
 
 Let’s see the results.
@@ -65,9 +71,13 @@ Let’s see the results.
 
 Both planning runs finished in about two and a half minutes.
 
+![Planning run time and cost comparison](/blog/claude-fable-5-vs-gpt-5-5/04-planning-results.png)
+
 Both Fable 5 and GPT-5.5 got the hard requirement right, and they converged on the same core algorithm: Hash the flag key and user ID into one of 10,000 buckets, then enable the user if their bucket falls below the rollout percentage. Raising the percentage only adds buckets, so the original users stay enabled. Both plans explained the math and specified tests to prove it.
 
 The gap came from everything around the algorithm. We scored both plans against a weighted rubric covering rollout correctness, reliability design, security, decomposition, implementability, operational clarity, and communication. We defined the criteria when we designed the prompt, before either plan existed, since each requirement in the prompt maps to one of them.
+
+![Planning rubric scores for Claude Fable 5 and GPT-5.5](/blog/claude-fable-5-vs-gpt-5-5/05-plan-rubric.png)
 
 Two criteria drove the result.
 
@@ -82,6 +92,8 @@ Two criteria drove the result.
    GPT-5.5’s plan was about three times longer (1,456 lines vs 431) and won on operational breadth, with metrics, log hygiene, and deployment notes that Claude Fable 5’s plan mostly skipped. **It was a buildable plan. It just left more decisions on the table.**
 
 We went in expecting Claude Fable 5’s plan to win, and it did, but it won on judgment rather than completeness. The short version is that **GPT-5.5 wrote a bigger plan** and **Claude Fable 5 wrote a sharper one.**
+
+![Kilo Code CLI running the planning prompt with GPT-5.5](/blog/claude-fable-5-vs-gpt-5-5/06-gpt-planning-session.png)
 
 *Kilo Code CLI session running the planning prompt with GPT-5.5.*
 
@@ -101,7 +113,11 @@ We took Claude Fable 5’s plan and gave it to both models as a `plan.md` file i
 
 > Implement the plan in plan.md. Follow it as written. Run the tests to verify your work before finishing.
 
+![Implementation run time and cost comparison](/blog/claude-fable-5-vs-gpt-5-5/07-implementation-results.png)
+
 One thing we noticed during the runs is that both models independently finished by spinning up review sub-agents (security, performance, logic, deploy safety, duplication, dead code) and then fixing what the reviewers found. Kilo Code CLI offers this directly through its Review option.
+
+![Review sub-agents running after implementation](/blog/claude-fable-5-vs-gpt-5-5/08-review-subagents.png)
 
 *Review sub-agents running at the end of an implementation session.*
 
@@ -111,6 +127,8 @@ We graded both services the same way. First we ran each implementation’s own t
 
 **Both implementations passed everything.**
 
+![Acceptance check results for both implementations](/blog/claude-fable-5-vs-gpt-5-5/09-acceptance-results.png)
+
 The result that surprised us most came from comparing the two services against each other. We evaluated the same 100 user IDs against the same flag at a 35% rollout on both servers and diffed the outputs. They were identical, down to which individual users were enabled. The plan specified the hash input exactly, both models implemented it exactly, **and the two different models produced functionally interchangeable services.**
 
 # Plan Adherence
@@ -119,7 +137,9 @@ Both models followed the plan closely enough. The file layouts match the structu
 
 **Neither model overrode the plan anywhere.** Both also crossed the plan’s boundary in the same spot, independently adding a database index the plan had missed for filtered audit log queries.
 
-Claude Fable 5 Implementing Plan.
+![Claude Fable 5 implementing the winning plan](/blog/claude-fable-5-vs-gpt-5-5/10-claude-implementation.png)
+
+*Claude Fable 5 implementing the winning plan.*
 
 # Code Quality
 
@@ -140,6 +160,8 @@ Claude Fable 5’s extra tokens went to three places.
 None of this changed the acceptance results. GPT-5.5 shipped the same functional service for about 62% less in two thirds of the time.
 
 # What the Full Pipelines Cost
+
+![Full pipeline cost comparison](/blog/claude-fable-5-vs-gpt-5-5/11-pipeline-costs.png)
 
 Both pipelines produced a service that passed every check. The mixed pipeline cost 59% less.
 

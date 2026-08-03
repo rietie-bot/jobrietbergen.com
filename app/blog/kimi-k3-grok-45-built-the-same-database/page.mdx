@@ -1,0 +1,154 @@
+import { CrossPostNotice } from '@/components/cross-post-notice'
+
+export const metadata = {
+  title: 'Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price',
+  description: 'Kimi K3 and Grok 4.5 matched Claude Opus 5 on database correctness and crash safety at 4% of the cost.',
+  alternates: {
+    canonical: 'https://blog.kilo.ai/p/kimi-k3-grok-45-built-the-same-database',
+  },
+};
+
+# Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price
+
+### Why model choice matters
+
+*Jul 30, 2026 · by Job Rietbergen*
+
+---
+
+Moonshot AI published the full weights for [Kimi K3](https://www.kimi.com/en/blog/kimi-k3) on July 27. It is the largest open-weight model ever released, inference providers started serving it within a day, and it has been available in Kilo since day one. We wanted to see how close a combo of Kimi K3 for planning and [Grok 4.5](https://x.ai/news/grok-4-5) for implementation can get to [Claude Opus 5](https://www.anthropic.com/news/claude-opus-5) doing both jobs itself. We gave both setups the same two-phase job. Each one had to design an embedded database from a spec, then build it. We crash-tested both results with a harness we wrote before either model ran, and then we read both codebases.
+
+![Kimi K3 and Grok 4.5 compared with Claude Opus 5](/blog/kimi-k3-grok-45-built-the-same-database/01-comparison-overview.png)
+
+**TL;DR:** Both setups passed 64 of the same 65 conformance checks, survived every crash-recovery test, and shipped the same single critical bug. Claude Opus 5 scored **98/100**, the Kimi K3 + Grok 4.5 setup scored **93/100** and ran at **4% of the cost** ($1.27 against $31.71).
+
+## Pricing
+
+![Kimi K3, Grok 4.5, and Claude Opus 5 pricing comparison](/blog/kimi-k3-grok-45-built-the-same-database/02-pricing.png)
+
+Per token, Kimi K3 costs 60% of Claude Opus 5, and Grok 4.5 costs 24% on output. This setup puts the open-weight model on planning, where the design decisions get made, and the more affordable model on implementation, where the decisions are already written down. Our [earlier planning comparison](https://blog.kilo.ai/p/sol-vs-fable) found that frontier models implement a good plan almost interchangeably. This test asks whether that holds when neither model in the setup is a frontier flagship.
+
+## What We Asked Them to Build
+
+We wrote a spec for kvd, an embedded key-value store in Go. It is a lighter version of something like Redis, with one binary and a small text protocol over TCP, except data is persisted to disk. We picked it because everything in the spec can be checked. Either the database loses data when you kill it, or it does not. The spec requires:
+
+- A single Go binary serving a Redis-style text protocol over TCP, with commands for reading, writing, deleting, batching, stats, and compaction
+- A durability rule: the server must not acknowledge a write until the data is flushed to disk, and every acknowledged write must survive `kill -9` arriving at any moment
+- Atomic batches: a group of up to 1,000 writes and deletes must apply all-or-nothing, even when the process dies mid-batch
+- Crash recovery: on restart the server must detect a partially written record at the end of its log by checksum, discard it, and lose nothing else
+- Scale: 1,000,000 keys, datasets bigger than RAM, and recovery within 60 seconds
+- Standard library only, with no third-party storage engines
+
+The hard part of building a system like this is the failure paths. The store has to recover from a crash, throw away a half-written record without losing the good data before it, and keep a batch atomic when the process dies in the middle of one. That is where we aimed the test.
+
+## The Two-Phase Setup
+
+Both setups ran in [Kilo CLI](https://kilo.ai/) with the same prompts. Claude Opus 5 ran at xhigh reasoning in both phases, Kimi K3 at max, and Grok 4.5 at high.
+
+**Phase 1: planning.** We told each planner that its plan would be handed to a different engineer who would never see the original prompt and could not ask questions. The plan had to carry everything, from the exact wire protocol to every durability guarantee. If a requirement was missing from the plan, the implementer would never know it existed.
+
+**Phase 2: implementation.** A fresh session got only the plan file. Claude Opus 5 implemented its own plan. Grok 4.5 implemented Kimi K3's plan. Neither implementer ever saw the initial prompt.
+
+This strict handoff lets us trace every bug back to its source. If a requirement went missing between the spec and the plan, the bug belongs to the planner. If the plan was right and the code is wrong, it belongs to the implementer.
+
+## How We Graded
+
+Before either model ran, we wrote a Python test harness that speaks the spec's wire protocol and grades any server that implements it. It runs 65 checks across six suites: protocol conformance, durability under crash injection, batch atomicity, compaction, consistency, and scale. For the durability checks, the harness records every write it sends and marks it acknowledged once the server replies. Then it kills the server with `kill -9` at a random moment, restarts it, and checks that every acknowledged write is still there, byte for byte. It repeats this ten times per suite while concurrent writers are running.
+
+The harness covers everything we can check automatically. For the rest, we read both codebases, graded test quality, documentation accuracy, and code hygiene, and looked for bugs the automated checks could not reach.
+
+## The Planning Phase
+
+![Planning phase cost, time, and output comparison](/blog/kimi-k3-grok-45-built-the-same-database/03-planning-phase.png)
+
+Claude Opus 5's plan is more than twice as long, and most of the extra length is substance. It includes decision tables, a table of exactly where fsync must happen, and walkthroughs of what recovery does at each crash point. Kimi K3's plan is shorter but covers the same durability rules, the same wire protocol, and the same batch atomicity design.
+
+![Kimi K3 plan](/blog/kimi-k3-grok-45-built-the-same-database/04-kimi-k3-plan.png)
+
+*Kimi K3's Plan*
+
+Claude Opus 5's planning run also needed one adjustment. Kilo CLI caps output at 32,000 tokens per step by default, and Opus 5 at xhigh is the first model we have seen hit that cap during a single reasoning run. Our first attempts finished without writing a plan at all. We raised the cap to the model's 128,000-token limit with `KILO_EXPERIMENTAL_OUTPUT_TOKEN_MAX` and re-ran, and one step in the successful run produced about 37,000 output tokens. The per-token pricing understates the gap here. Opus 5 produces far more output tokens during reasoning than the other two models, and reasoning tokens bill at the output rate.
+
+![Claude Opus 5 plan](/blog/kimi-k3-grok-45-built-the-same-database/05-opus-5-plan.png)
+
+*Opus 5's Plan*
+
+Both plans also have flaws, and they matter for what comes next:
+
+- **Both planners made the same mistake** on one protocol edge case, the handling of an oversized batch. More on that below.
+- Kimi K3's compaction design has a hole. A key deleted while compaction is running can reappear after a restart, because the compacted copy of the key survives while the deletion record does not.
+
+## The Implementation Phase
+
+![Implementation phase cost, time, and output comparison](/blog/kimi-k3-grok-45-built-the-same-database/06-implementation-phase.png)
+
+Claude Opus 5 took 76 minutes. It built a test suite covering 14 different crash scenarios and a benchmark running at the full 1,000,000-key scale. Grok 4.5 finished in 11 minutes with a codebase about a quarter of the size, and its tests cover the happy paths plus one crash test.
+
+**Grok 4.5 did not build the compaction flaw from its plan.** It changed the design so that compaction runs serialized with writes and cleans up all old data files, which closes both holes in Kimi K3's plan. Claude Opus 5 went the other way and faithfully built the one mistake its own plan contained.
+
+## How the Two Setups Worked
+
+The two setups worked in different styles. Claude Opus 5 kept going back over its own work. Its planning session ran 49 steps, and 23 of them were edits to the plan it had already written. Its implementation ran 150 steps, 79 of them shell commands, in a loop of building, running its own tests, and fixing what they caught. Kimi K3 and Grok 4.5 worked much closer to one shot. Kimi K3 produced its plan in 7 steps and stopped. Grok 4.5 wrote the code, tests, and README in 22 steps and called it done. We saw the same split when [GPT-5.6 Sol audited its own plans](https://blog.kilo.ai/p/sol-vs-fable) unprompted.
+
+This loop is where much of Claude Opus 5's extra time and cost went, and it is probably why its tests and documentation came out so much deeper. You could likely prompt the budget combo into a similar loop. We did not, because both setups got identical prompts. What we measured is the default behavior, and by default one setup reviews its own work and the other does not.
+
+## Crash Testing: A Tie
+
+Every automated check came back the same for both.
+
+![Crash testing results](/blog/kimi-k3-grok-45-built-the-same-database/07-crash-testing-results.png)
+
+Neither store lost a single acknowledged write in any round. Both recovered a million-key store in under a second and a half. Both handled garbage appended to their data files without losing anything. We read the code to check whether these passes were luck, and they were not. Both implementations flush to disk before acknowledging a write. Both use checksummed records, so a torn write gets detected instead of trusted. Both write a batch as a single record, so partial application cannot happen.
+
+Both stores also failed one check, and it was the same one.
+
+## The Bug Both Shipped
+
+The spec caps batches at 1,000 operations and says an oversized batch must be rejected with an error and nothing applied. Both servers reject it. Neither consumes the batch's operations off the connection first. The operations are still sitting in the stream after the rejection, so the server reads them as fresh standalone commands and executes them.
+
+We confirmed it with a scripted reproduction against both binaries. After rejecting a 1,001-operation batch, Claude Opus 5's server went on to apply all 1,001 operations it had just refused. Grok 4.5's server applied 2 before the connection closed. A client that trusted the rejection would have data it never meant to commit.
+
+The bug came from the plans. Claude Opus 5's plan spells out the wrong behavior, saying that on an oversized count the connection "stays open, no operations consumed." Kimi K3's plan never says what to do with the pending operations. Both implementers built what their plans said. **Two different planners wrote the same bug independently.**
+
+Neither model's own test suite catches it, because neither sends an oversized batch with its operations attached. Both test suites pass. We saw the same pattern in our [Claude Opus 4.7 vs Kimi K2.6 comparison](https://blog.kilo.ai/p/we-gave-claude-opus-47-and-kimi-k26), where models did not write the tests that would catch their own worst bug. Our harness found it because it tests against the spec instead of trusting the models' own tests.
+
+## What the Extra $30 Bought
+
+The five-point gap in the final score comes entirely from the code review.
+
+- **Tests.** Claude Opus 5's suite kills the server at 14 points, corrupts its own files with truncation and bit flips to check that recovery handles them, and fuzzes the protocol parser. Grok 4.5's suite has one crash test and never kills the server during a batch or a compaction.
+- **Documentation.** Claude Opus 5's 746-line README survived a line-by-line check against the code. Grok 4.5's README covers the required topics but claims an fsync behavior on macOS that the code does not implement.
+- **Hygiene.** Grok 4.5 shipped thinking-out-loud comments and some dead code. Claude Opus 5's codebase was much cleaner.
+- **Remaining defects.** Beyond the shared batch bug, we found one narrow error-path window in Grok 4.5's compaction that could leave a stale data file behind. We found nothing comparable in Claude Opus 5's store.
+
+One difference went the other way. Claude Opus 5's server used 428MB of memory after recovering the 512MB dataset. Grok 4.5's used 223MB. The cause is a mis-sized memory estimate in Claude Opus 5's recovery path, not a design problem. Both stores keep values on disk rather than in RAM.
+
+## The Scores
+
+![Final scores for Claude Opus 5 and Kimi K3 with Grok 4.5](/blog/kimi-k3-grok-45-built-the-same-database/08-final-scores.png)
+
+## Cost and Time
+
+![Cost and time comparison](/blog/kimi-k3-grok-45-built-the-same-database/09-cost-and-time.png)
+
+The Kimi K3 + Grok 4.5 setup came in at **4% of the cost and 23% of the time**. The entire score gap comes from tests, documentation, and code hygiene. None of it comes from crash safety or protocol correctness.
+
+## Conclusion
+
+**For correctness,** this test could not separate the two. Both setups got the same conformance score, the same crash-test results, and the same single critical bug, and that bug came from the planning phase in both. As an implementer, Grok 4.5 gave up nothing to Claude Opus 5 on this build.
+
+**For the codebase you end up maintaining,** Claude Opus 5's output is better. Its tests cover the failure paths, its documentation matches the code, and it left no dead code or leftover comments behind. If the code is going into a repo that people will work in long term, that difference matters.
+
+**If cost were not a factor, we would default to Claude Opus 5.** It did the better job overall. If the price gap were smaller, say two or three times, paying more for the better deliverable would still be a reasonable default. But the gap here is 25x, and that makes the more expensive workflow hard to recommend blindly. It has to be mission-critical work, or a case where the extra cost is clearly justified by the extra points. The things the extra $30 bought are also the easiest things to add afterwards. A follow-up prompt asking Grok 4.5 for a deeper test suite and a README pass costs about another dollar, and a normal code review would catch the hygiene issues. Crash safety is the part you cannot add afterwards, and the combo gave up none of it.
+
+We also suspect the Kimi K3 + Grok 4.5 setup has room to improve. We have not tested this, but tuning the planning and implementation prompts to push Kimi K3 and Grok 4.5 into the same iterate-and-review loop that Claude Opus 5 runs by default would likely raise the quality of what they ship. If you want to run the same split, Kilo lets you set a different model per mode. The plan can come from Kimi K3 in Plan mode and the implementation from Grok 4.5 in Code mode.
+
+Additionally, two things made the budget result stronger than we expected. Grok 4.5 fixed its planner's compaction flaw on its own, which goes against the assumption that an affordable implementer blindly builds whatever it is handed. And Kimi K3's weights are now public, so its price has room to fall as more providers host it. We have watched the same thing happen with every open-weight release this year.
+
+The most useful finding is the shared bug. Two models at very different price points planned independently and made the identical mistake, and both implementations passed their own tests. The bug only surfaced because we tested both servers against the spec with a harness written before any model ran. That kind of external testing costs the same no matter which models you use.
+
+---
+
+**Testing performed using [Kilo Code](https://kilo.ai/)**, a free open-source AI coding assistant for [VS Code](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code) and [JetBrains](https://plugins.jetbrains.com/plugin/28350-kilo-code) with 3,000,000+ Kilo Coders.
+
+<CrossPostNotice url="https://blog.kilo.ai/p/kimi-k3-grok-45-built-the-same-database" />

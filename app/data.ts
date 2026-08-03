@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Alphadoc',
-    description: 'Developer documentation platform.',
+    description: 'Developer experience platform.',
     image: '/logos/alphadoc_io_logo.jpeg',
     id: 'project2',
   },
@@ -59,7 +59,7 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Kilo',
+    company: 'Kilo (acquired by Anaconda)',
     title: 'Head of Growth',
     start: '2025',
     end: 'Present',
@@ -110,7 +110,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work6',
   },
   {
-    company: 'Rocket Internet / CityDeal (→ Groupon)',
+    company: 'Rocket Internet / CityDeal (acquired by Groupon)',
     title: 'Early Employee',
     start: '2010',
     end: '2013',
@@ -121,6 +121,36 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 ]
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    title: 'Open Weights Is All You Need',
+    description: 'Why open and closed models need a neutral routing layer.',
+    link: '/blog/open-weights-is-all-you-need',
+    uid: 'blog-12',
+  },
+  {
+    title: 'Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price',
+    description: 'The open-model path delivered comparable correctness and crash safety at 4% of the cost.',
+    link: '/blog/kimi-k3-grok-45-built-the-same-database',
+    uid: 'blog-11',
+  },
+  {
+    title: "Auto Model vs Picking Your Own: We Tested Kilo Code's Router on a Backend Build",
+    description: 'Auto Model matched manually selected frontier models at less than half the cost.',
+    link: '/blog/auto-model-vs-picking-your-own',
+    uid: 'blog-10',
+  },
+  {
+    title: "Why we won't see another DeepSeek moment anytime soon",
+    description: 'Frontier-class open models increase demand for scarce compute rather than reducing it.',
+    link: '/blog/no-second-deekseek-moment',
+    uid: 'blog-9',
+  },
+  {
+    title: 'AI creates jobs. The compute bill is not your problem (yet).',
+    description: 'AI-heavy companies are growing headcount while infrastructure spending pressures pricing.',
+    link: '/blog/ai-creates-jobs-compute-bill',
+    uid: 'blog-8',
+  },
   {
     title: 'We predicted the $100k/yr-per-dev AI bill. Now the winners are routing around it.',
     description: 'Why model routing is becoming the enterprise cost-control layer for AI coding.',

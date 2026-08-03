@@ -15,6 +15,8 @@ export const metadata = {
 
 ---
 
+![Model routing and the rising cost of AI coding](/blog/we-predicted-the-100kyr-per-dev-ai/01-model-routing-ai-cost.png)
+
 Three of the largest IPOs in history are arriving in the same window. SpaceX went public on June 12 at a [$1.77 trillion valuation](https://www.cnbc.com/2026/06/11/spacex-raises-75-billion-in-record-setting-ipo-ahead-of-nasdaq-debut.html), the biggest listing in history. Anthropic filed confidentially around $965 billion. OpenAI came in behind it at nearly $852 billion. Open any of the filings and you hit a word most of Wall Street didn’t know a year ago. SpaceX’s prospectus uses “token” *62 times*.
 
 Underneath all of the chatter around tokens is a single bet. These valuations assume two numbers keep climbing forever: *how many tokens the world burns*, and *how much companies will pay for the best models to burn them*. The first assumption looks safe. The second is already cracking, and it is cracking because of the most boring cost-control habit in enterprise software. The labs’ own best customers are learning to stop sending every job to the most expensive model that can handle it.
@@ -26,6 +28,8 @@ That habit has a name now. Model routing. It is the reason the people writing th
 On June 1, GitHub [flipped Copilot to usage-based billing](https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/) for every plan. Everything agentic now burns credits at API rates. A line item that many engineering leaders treated as fixed for years became a number that sent costs sky-high, and the [backlash was visible](https://blog.kilo.ai/p/the-github-copilot-bill-came-due) at the Gartner summit we visited recently.
 
 On top of that, enterprises report blowing through their entire annual token budget in months. **Uber blew through its entire 2026 AI coding budget in four months**, by April, then capped employees at $1,500 a month. Uber was not even on Copilot. It was running Claude Code and Cursor. The point is that this is structural. Agentic workflows burn tokens faster than any flat per-seat budget could support, and when you tie yourself to one vendor, their next pricing change lands directly on you.
+
+![Enterprise AI coding costs after usage-based billing](/blog/we-predicted-the-100kyr-per-dev-ai/02-enterprise-ai-coding-costs.png)
 
 The obvious read is that AI got too expensive and the boom is cooling. The data says something else.
 
@@ -45,6 +49,8 @@ The winners are the ones who orchestrate their work to the right model, which do
 
 ## Why routing works now
 
+![How model routing matches work to cost and capability](/blog/we-predicted-the-100kyr-per-dev-ai/03-model-routing.png)
+
 The economics are simple once you ignore the list price. A model is not expensive because its per-token rate is high. It is expensive because of how many tokens it burns to finish a job, and the most powerful models burn the most, since they reason longer and write more on the way to an answer. Default everything to the best model and you pay a premium rate times a premium token count. Match the model to the task and the same work costs a fraction.
 
 A year ago there was a catch. Routing down meant a worse result, so nobody serious did it on work that mattered. That has changed. Open-weight models have closed much of the gap with the closed frontier on real agentic coding, and we can say so with numbers because we run the models ourselves. [KiloBench](https://kilo.ai/kilobench) puts each one through Kilo’s actual agent harness on Terminal Bench 2.0 and reports the true cost and accuracy.
@@ -52,6 +58,8 @@ A year ago there was a catch. Routing down meant a worse result, so nobody serio
 Here is what that looks like in practice. When we ran [GLM-5.2 against Kimi K2.7 Code](https://blog.kilo.ai/p/glm-52-vs-kimi-k27-code-which-model) on the same task, the two open-weight models split on planning, where GLM’s plan scored 9.0 to Kimi’s 8.1, but built nearly identical, fully working services from the same spec. The lesson is that most of a build’s quality is decided in the plan, so you can spend your strongest model on the planning and hand the build to a cheaper model and still ship the same service. Used that way, routing is not a compromise. It puts each model where it does its best work.
 
 ## The trap is the default
+
+![The cost and availability risk of defaulting to one frontier model](/blog/we-predicted-the-100kyr-per-dev-ai/04-frontier-model-default.png)
 
 Anthropic’s Claude Fable 5 was the cleanest cautionary tale, precisely because it was an excellent model, which is what made it dangerous as a default. It topped nearly every benchmark and was priced to match, at about $10 per million input tokens and $50 per million output, and because it reasoned longer it burned more tokens on the same job, quietly leaking money out of a budget on work a cheaper model could finish.
 
@@ -67,6 +75,8 @@ This is also why the routing layer is best kept separate from the model layer. A
 
 ## You don’t pick a model anymore
 
+![Auto Model routing across model tiers](/blog/we-predicted-the-100kyr-per-dev-ai/05-auto-model-routing.png)
+
 The value is moving from the model to the layer that chooses between models, and that layer has to be neutral to be trusted. That is what we built Kilo to be. When the prevailing wisdom said everyone would consolidate onto one or two providers, we bet the other way: open source, bring your own keys, zero markup, real model choice across 500-plus options, and routing that follows real-world usage data and public benchmarks, so you can see why a given model won a given task.
 
 Nobody wants to weigh hundreds of models at different prices for every step of every task. So the answer is a layer that makes the question disappear. That layer is [Auto Model](https://kilo.ai/auto-model). You pick a tier, Frontier, Balanced, or Free, and every request goes to the model that fits the work, with frontier reasoning where it earns its price and cheaper or open-weight models where it does not. It shows you the cost while it runs and steps aside the moment you want to drive.
@@ -76,6 +86,10 @@ Today we are taking that further with [the launch of Auto Efficient](https://blo
 The teams that come out ahead are the ones that stopped betting their roadmap on a single model. That is what Auto Efficient is built to do. You no longer choose a model. You choose how you choose models.
 
 [Try Auto Efficient](https://kilo.ai/auto-model)
+
+![Auto Efficient model routing](/blog/we-predicted-the-100kyr-per-dev-ai/06-auto-efficient.png)
+
+[Learn More](https://blog.kilo.ai/p/auto-efficient)
 
 ---
 

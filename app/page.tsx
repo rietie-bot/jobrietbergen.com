@@ -268,6 +268,26 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <figure className="relative overflow-hidden rounded-3xl bg-zinc-950 p-6 text-white ring-1 ring-zinc-900 dark:bg-zinc-900 dark:ring-zinc-800 sm:p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_88%_10%,rgba(161,161,170,0.22),transparent_30%)]" />
+          <div className="relative">
+            <blockquote className="text-xl leading-relaxed tracking-tight text-zinc-100 sm:text-2xl">
+              &ldquo;Job took our growth from near zero to over 3 million users in 13 months. He&rsquo;s sharp, direct, and gets things done without needing hand-holding. A strong mix of growth leadership and hands-on execution.&rdquo;
+            </blockquote>
+            <figcaption className="mt-6 border-t border-white/10 pt-4">
+              <div className="font-medium text-white">Sid Sijbrandij</div>
+              <div className="text-sm text-zinc-400">
+                Co-founder of GitLab and Kilo Code
+              </div>
+            </figcaption>
+          </div>
+        </figure>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <div className="flex gap-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6">
           {STRIP_PHOTOS.map((photo, i) => (
             <motion.div
