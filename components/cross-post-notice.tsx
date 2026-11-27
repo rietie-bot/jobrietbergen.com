@@ -10,7 +10,10 @@ export function CrossPostNotice({
   return (
     <blockquote>
       This post originally appeared on{' '}
-      <a href={url} target="_blank" rel="noopener noreferrer">{source}</a>.
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {source}
+      </a>
+      .
     </blockquote>
   )
 }

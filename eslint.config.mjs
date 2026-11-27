@@ -1,21 +1,21 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { FlatCompat } from '@eslint/eslintrc'
+import * as mdx from 'eslint-plugin-mdx'
+import prettier from 'eslint-plugin-prettier/recommended'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-});
+})
 
 const eslintConfig = [
-  ...compat.extends(
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:prettier/recommended",
-  ),
-  "plugin:mdx/recommended",
-];
+  { ignores: ['.next/**', 'out/**', '.playwright-mcp/**', 'next-env.d.ts'] },
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  { ...mdx.flat, files: ['**/*.mdx'] },
+  { ...prettier, files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'] },
+]
 
-export default eslintConfig;
+export default eslintConfig
