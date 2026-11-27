@@ -1,26 +1,11 @@
 'use client'
 import { Fragment, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
-import { Magnetic } from '@/components/ui/magnetic'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
+import { ConnectSection } from '@/components/connect-section'
 import Link from 'next/link'
-import { AnimatedBackground } from '@/components/ui/animated-background'
-import {
-  PROJECTS,
-  WORK_EXPERIENCE,
-  BLOG_POSTS,
-  EMAIL,
-  SOCIAL_LINKS,
-  SPEAKING_PHOTOS,
-} from './data'
+import { BlogPosts } from '@/components/blog-posts'
+import { PROJECTS, WORK_EXPERIENCE, BLOG_POSTS, SPEAKING_PHOTOS } from './data'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -39,92 +24,6 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
-}
-
-type ProjectVideoProps = {
-  src: string
-}
-
-function ProjectVideo({ src }: ProjectVideoProps) {
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
-  )
-}
-
-function MagneticSocialLink({
-  children,
-  link,
-}: {
-  children: React.ReactNode
-  link: string
-}) {
-  return (
-    <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
-        <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-3 py-1.5 text-base text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
-      >
-        {children}
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 15 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-3 w-3"
-        >
-          <path
-            d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
-            fill="currentColor"
-            fillRule="evenodd"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-      </a>
-    </Magnetic>
-  )
 }
 
 const HERO_PHOTOS: { src: string; alt: string }[] = [
@@ -164,13 +63,13 @@ function RotatingPhoto() {
   const photo = HERO_PHOTOS[index]
 
   return (
-    <div className="relative w-40 h-40 sm:w-48 sm:h-48 shrink-0 rounded-2xl overflow-hidden ring-1 ring-zinc-200/50 dark:ring-zinc-800/50">
+    <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-2xl ring-1 ring-zinc-200/50 sm:h-48 sm:w-48 dark:ring-zinc-800/50">
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
           src={photo.src}
           alt={photo.alt}
-          className="absolute inset-0 w-full h-full object-cover object-[center_20%]"
+          className="absolute inset-0 h-full w-full object-cover object-[center_20%]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -192,21 +91,31 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex flex-col sm:flex-row gap-8 items-start">
+        <div className="flex flex-col items-start gap-8 sm:flex-row">
           <RotatingPhoto />
           <div className="flex-1">
             <p className="text-lg leading-relaxed text-zinc-700 sm:text-xl dark:text-zinc-300">
-              Builder and growth leader based in Amsterdam. Currently leading growth at{' '}
-              <a href="https://kilo.ai" target="_blank" rel="noopener noreferrer" className="underline dark:text-zinc-300">Kilo</a>,
-              an open-source coding agent. Previously founded Alphadoc and Onjo AI.
-              I&apos;m hands-on across growth, data, product, and engineering.
+              Builder and growth leader based in Amsterdam. Currently leading
+              growth at{' '}
+              <a
+                href="https://kilo.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline dark:text-zinc-300"
+              >
+                Kilo
+              </a>
+              , an open-source coding agent. Previously founded Alphadoc and
+              Onjo AI. I&apos;m hands-on across growth, data, product, and
+              engineering.
             </p>
-            <p className="mt-4 text-base font-medium leading-relaxed text-zinc-900 sm:text-lg dark:text-zinc-100">
+            <p className="mt-4 text-base leading-relaxed font-medium text-zinc-900 sm:text-lg dark:text-zinc-100">
               15 years experience building and growing venture-scale companies.
               I&apos;ve gone from zero to exit multiple times.
             </p>
-            <p className="mt-4 text-base italic leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
-              &ldquo;Learn to sell, learn to build. If you can do both, you&apos;ll be unstoppable.&rdquo; — Naval
+            <p className="mt-4 text-base leading-relaxed text-zinc-600 italic sm:text-lg dark:text-zinc-400">
+              &ldquo;Learn to sell, learn to build. If you can do both,
+              you&apos;ll be unstoppable.&rdquo; — Naval
             </p>
           </div>
         </div>
@@ -219,7 +128,8 @@ export default function Personal() {
         <h3 className="mb-5 text-xl font-medium">Ventures</h3>
         <div className="flex flex-col space-y-2">
           {PROJECTS.map((project) => {
-            const className = "relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+            const className =
+              'relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30'
             const cardContent = (
               <>
                 <Spotlight
@@ -232,7 +142,7 @@ export default function Personal() {
                       <img
                         src={project.image}
                         alt={project.name}
-                        className="h-9 w-9 rounded-[2px] object-cover shrink-0"
+                        className="h-9 w-9 shrink-0 rounded-[2px] object-cover"
                       />
                     )}
                     <div>
@@ -250,13 +160,16 @@ export default function Personal() {
             return (
               <Fragment key={project.id}>
                 {project.link ? (
-                  <a className={className} href={project.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className={className}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {cardContent}
                   </a>
                 ) : (
-                  <div className={className}>
-                    {cardContent}
-                  </div>
+                  <div className={className}>{cardContent}</div>
                 )}
               </Fragment>
             )
@@ -268,11 +181,14 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <figure className="relative overflow-hidden rounded-3xl bg-zinc-950 p-6 text-white ring-1 ring-zinc-900 dark:bg-zinc-900 dark:ring-zinc-800 sm:p-8">
+        <figure className="relative overflow-hidden rounded-3xl bg-zinc-950 p-6 text-white ring-1 ring-zinc-900 sm:p-8 dark:bg-zinc-900 dark:ring-zinc-800">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_88%_10%,rgba(161,161,170,0.22),transparent_30%)]" />
           <div className="relative">
             <blockquote className="text-xl leading-relaxed tracking-tight text-zinc-100 sm:text-2xl">
-              &ldquo;Job took our growth from near zero to over 3 million users in 13 months. He&rsquo;s sharp, direct, and gets things done without needing hand-holding. A strong mix of growth leadership and hands-on execution.&rdquo;
+              &ldquo;Job took our growth from near zero to over 3 million users
+              in 13 months. He&rsquo;s sharp, direct, and gets things done
+              without needing hand-holding. A strong mix of growth leadership
+              and hands-on execution.&rdquo;
             </blockquote>
             <figcaption className="mt-6 border-t border-white/10 pt-4">
               <div className="font-medium text-white">Sid Sijbrandij</div>
@@ -288,12 +204,12 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex gap-3 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6">
+        <div className="-mx-6 -my-2 flex gap-3 overflow-x-auto px-6 py-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {STRIP_PHOTOS.map((photo, i) => (
             <motion.div
               key={photo.src}
-              className="shrink-0 rounded-xl overflow-hidden ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
-              style={{ rotate: (i % 2 === 0 ? 1.2 : -1.2) }}
+              className="shrink-0 overflow-hidden rounded-xl ring-1 ring-zinc-200/50 dark:ring-zinc-800/50"
+              style={{ rotate: i % 2 === 0 ? 1.2 : -1.2 }}
               whileHover={{ scale: 1.03, rotate: 0 }}
               transition={{ duration: 0.2 }}
             >
@@ -316,14 +232,16 @@ export default function Personal() {
           <div className="relative space-y-6">
             <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div className="max-w-xl">
-                <p className="mb-2 text-sm uppercase tracking-[0.2em] text-zinc-400">
+                <p className="mb-2 text-sm tracking-[0.2em] text-zinc-400 uppercase">
                   Speaking
                 </p>
                 <h3 className="mb-4 text-3xl font-medium tracking-tight">
                   Practical talks on AI, growth, and building from zero to one.
                 </h3>
                 <p className="text-[17px] leading-relaxed text-zinc-300">
-                  I speak at events, podcasts, panels, and team sessions about applying AI agents in real workflows, building growth systems, and turning technical products into companies people care about.
+                  I speak at events, podcasts and panels about applying AI
+                  agents in real workflows, building growth systems, and turning
+                  technical products into companies people care about.
                 </p>
               </div>
               <a
@@ -358,7 +276,9 @@ export default function Personal() {
                     src={photo.src}
                     alt={photo.alt}
                     className={SPEAKING_IMAGE_CLASS}
-                    style={{ aspectRatio: i === 0 || i === 1 ? '16 / 11' : '4 / 3' }}
+                    style={{
+                      aspectRatio: i === 0 || i === 1 ? '16 / 11' : '4 / 3',
+                    }}
                   />
                 </motion.div>
               ))}
@@ -375,7 +295,8 @@ export default function Personal() {
         <h3 className="mb-5 text-xl font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => {
-            const className = "relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+            const className =
+              'relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30'
             const jobContent = (
               <>
                 <Spotlight
@@ -383,13 +304,13 @@ export default function Personal() {
                   size={64}
                 />
                 <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                  <div className="relative flex w-full flex-row justify-between items-center">
+                  <div className="relative flex w-full flex-row items-center justify-between">
                     <div className="flex items-center gap-3">
                       {job.image && (
                         <img
                           src={job.image}
                           alt={job.company}
-                          className="h-9 w-9 rounded-[2px] object-cover shrink-0"
+                          className="h-9 w-9 shrink-0 rounded-[2px] object-cover"
                         />
                       )}
                       <div>
@@ -411,13 +332,16 @@ export default function Personal() {
             return (
               <Fragment key={job.id}>
                 {job.link ? (
-                  <a className={className} href={job.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className={className}
+                    href={job.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {jobContent}
                   </a>
                 ) : (
-                  <div className={className}>
-                    {jobContent}
-                  </div>
+                  <div className={className}>{jobContent}</div>
                 )}
               </Fragment>
             )
@@ -429,58 +353,20 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-xl font-medium">Reading</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
+        <h3 className="mb-3 text-xl font-medium">
+          <Link
+            href="/blog"
+            className="underline-offset-4 hover:underline focus-visible:underline"
           >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-                {...(post.link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-[15px] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
-        </div>
+            Reading
+          </Link>
+        </h3>
+        <BlogPosts posts={BLOG_POSTS} />
       </motion.section>
 
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-xl font-medium">Connect</h3>
-        <p className="mb-5 text-lg leading-relaxed text-zinc-700 sm:text-xl dark:text-zinc-300">
-          Feel free to contact me at{' '}
-          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-          </a>
-        </p>
-        <div className="flex flex-wrap items-center justify-start gap-3">
-          {SOCIAL_LINKS.map((link) => (
-            <MagneticSocialLink key={link.label} link={link.link}>
-              {link.label}
-            </MagneticSocialLink>
-          ))}
-        </div>
-      </motion.section>
+      <motion.div variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <ConnectSection />
+      </motion.div>
     </motion.main>
   )
 }

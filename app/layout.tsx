@@ -14,14 +14,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://jobrietbergen.com/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
     default: 'Job Rietbergen — Head of Growth @ Kilo',
-    template: '%s | Job Rietbergen'
+    template: '%s | Job Rietbergen',
   },
-  description: 'Builder and growth operator based in Amsterdam. Currently leading growth at Kilo, an open-source coding agent. Previously founded Alphadoc and Onjo AI. Background in marketing with enough data and code skills to be dangerous.',
-};
+  description:
+    'Builder and growth operator based in Amsterdam. Currently leading growth at Kilo, an open-source coding agent. Previously founded Alphadoc and Onjo AI. Background in marketing with enough data and code skills to be dangerous.',
+}
 
 const geist = Geist({
   variable: '--font-geist',
@@ -49,7 +50,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col text-[17px] leading-relaxed font-[family-name:var(--font-inter-tight)]">
+          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)] text-[17px] leading-relaxed">
             <div className="relative mx-auto w-full max-w-screen-md flex-1 px-6 pt-20">
               <Header />
               {children}

@@ -1,42 +1,58 @@
 'use client'
 
-import { motion, SpringOptions, useScroll, useSpring } from 'motion/react'
-import { cn } from '@/lib/utils'
-import { RefObject } from 'react'
-
-export type ScrollProgressProps = {
-  className?: string
-  springOptions?: SpringOptions
-  containerRef?: RefObject<HTMLDivElement>
-}
-
-const DEFAULT_SPRING_OPTIONS: SpringOptions = {
-  stiffness: 200,
-  damping: 50,
-  restDelta: 0.001,
-}
+import { useEffect, useRef, type RefObject } from 'react'
 
 export function ScrollProgress({
-  className,
-  springOptions,
-  containerRef,
-}: ScrollProgressProps) {
-  const { scrollYProgress } = useScroll({
-    container: containerRef,
-    layoutEffect: Boolean(containerRef?.current),
-  })
+  article,
+}: {
+  article: RefObject<HTMLElement | null>
+}) {
+  const bar = useRef<HTMLProgressElement>(null)
 
-  const scaleX = useSpring(scrollYProgress, {
-    ...DEFAULT_SPRING_OPTIONS,
-    ...(springOptions ?? {}),
-  })
+  useEffect(() => {
+    const root = article.current
+    const progress = bar.current
+    if (!root || !progress) return
+
+    let frame = 0
+    function update() {
+      frame = 0
+      if (!root || !progress) return
+      const top = root.getBoundingClientRect().top
+      const bottom =
+        root.lastElementChild?.getBoundingClientRect().bottom ?? top
+      const distance = bottom - top - window.innerHeight
+      progress.value =
+        bottom <= window.innerHeight
+          ? 1
+          : distance > 0
+            ? Math.max(0, -top / distance)
+            : 0
+    }
+    function schedule() {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    const observer = new ResizeObserver(schedule)
+    observer.observe(document.body)
+    observer.observe(root)
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    update()
+    return () => {
+      cancelAnimationFrame(frame)
+      observer.disconnect()
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
+  }, [article])
 
   return (
-    <motion.div
-      className={cn('inset-x-0 top-0 h-1 origin-left', className)}
-      style={{
-        scaleX,
-      }}
+    <progress
+      ref={bar}
+      aria-label="Article reading progress"
+      value={0}
+      max={1}
+      className="pointer-events-none fixed inset-x-0 top-0 z-30 h-1 w-full appearance-none border-0 bg-zinc-200 [--progress-fill:var(--color-zinc-800)] dark:bg-zinc-700 dark:[--progress-fill:var(--color-zinc-50)] [&::-moz-progress-bar]:bg-(--progress-fill) [&::-webkit-progress-bar]:bg-transparent [&::-webkit-progress-value]:bg-(--progress-fill)"
     />
   )
 }

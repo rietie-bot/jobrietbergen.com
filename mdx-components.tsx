@@ -10,7 +10,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <a
           href={href}
-          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...(isExternal
+            ? { target: '_blank', rel: 'noopener noreferrer' }
+            : {})}
           {...props}
         >
           {children}
