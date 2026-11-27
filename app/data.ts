@@ -22,6 +22,7 @@ type BlogPost = {
   description: string
   link: string
   uid: string
+  image?: string
 }
 
 type SocialLink = {
@@ -126,66 +127,77 @@ export const BLOG_POSTS: BlogPost[] = [
     description: 'Why open and closed models need a neutral routing layer.',
     link: '/blog/open-weights-is-all-you-need',
     uid: 'blog-12',
+    image: '/blog/open-weights-is-all-you-need/meta-image.jpg',
   },
   {
     title: 'Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price',
     description: 'The open-model path delivered comparable correctness and crash safety at 4% of the cost.',
     link: '/blog/kimi-k3-grok-45-built-the-same-database',
     uid: 'blog-11',
+    image: '/blog/kimi-k3-grok-45-built-the-same-database/meta-image.jpg',
   },
   {
     title: "Auto Model vs Picking Your Own: We Tested Kilo Code's Router on a Backend Build",
     description: 'Auto Model matched manually selected frontier models at less than half the cost.',
     link: '/blog/auto-model-vs-picking-your-own',
     uid: 'blog-10',
+    image: '/blog/auto-model-vs-picking-your-own/meta-image.jpg',
   },
   {
     title: "Why we won't see another DeepSeek moment anytime soon",
     description: 'Frontier-class open models increase demand for scarce compute rather than reducing it.',
     link: '/blog/no-second-deekseek-moment',
     uid: 'blog-9',
+    image: '/blog/no-second-deekseek-moment/meta-image.jpg',
   },
   {
     title: 'AI creates jobs. The compute bill is not your problem (yet).',
     description: 'AI-heavy companies are growing headcount while infrastructure spending pressures pricing.',
     link: '/blog/ai-creates-jobs-compute-bill',
     uid: 'blog-8',
+    image: '/blog/ai-creates-jobs-compute-bill/meta-image.jpg',
   },
   {
     title: 'We predicted the $100k/yr-per-dev AI bill. Now the winners are routing around it.',
     description: 'Why model routing is becoming the enterprise cost-control layer for AI coding.',
     link: '/blog/we-predicted-the-100kyr-per-dev-ai',
     uid: 'blog-7',
+    image: '/blog/we-predicted-the-100kyr-per-dev-ai/meta-image.jpg',
   },
   {
     title: 'Claude Fable 5 vs GPT-5.5: better planning, similar execution',
     description: 'Claude Fable 5 wrote the sharper plan, but GPT-5.5 matched execution at lower cost.',
     link: '/blog/claude-fable-5-vs-gpt-5-5',
     uid: 'blog-6',
+    image: '/blog/claude-fable-5-vs-gpt-5-5/meta-image.jpg',
   },
   {
     title: "The GitHub Copilot Bill Came Due. Here's What Engineering Leaders Should Do.",
     description: 'The era of free compute ended, and enterprise teams need model freedom and spend control.',
     link: '/blog/the-github-copilot-bill-came-due',
     uid: 'blog-5',
+    image: '/blog/the-github-copilot-bill-came-due/meta-image.jpg',
   },
   {
     title: 'Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It.',
     description: 'Durable AI coding workflows need to survive vendor pivots across tools, models, and surfaces.',
     link: '/blog/your-coding-agent-will-get-ripped',
     uid: 'blog-4',
+    image: '/blog/your-coding-agent-will-get-ripped/meta-image.jpg',
   },
   {
     title: 'AI Agents Are Coming for Every Role',
     description: 'Not to replace you, but to give you super powers.',
     link: '/blog/ai-agents-are-coming-for-every-role',
     uid: 'blog-3',
+    image: '/blog/ai-agents-are-coming-for-every-role/meta-image.jpg',
   },
   {
     title: 'How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role',
     description: 'Building an interactive pricing calculator with AI coding tools',
     link: '/blog/how-i-use-kilo-for-slack-and-code-reviewer',
     uid: 'blog-1',
+    image: '/blog/how-i-use-kilo-for-slack-and-code-reviewer/meta-image.jpg',
   },
   {
     title: 'How Kilo Code uses PostHog to power hyper-fast growth',

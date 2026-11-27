@@ -1,0 +1,105 @@
+- generic [ref=f2e3]:
+  - banner [ref=f2e4]:
+    - generic [ref=f2e5]:
+      - link "Job Rietbergen" [ref=f2e6] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=f2e7]:
+        - generic [ref=f2e8]: Head of Growth @ Kilo
+        - generic [ref=f2e9]:
+          - generic [ref=f2e10]: H
+          - generic [ref=f2e11]: e
+          - generic [ref=f2e12]: a
+          - generic [ref=f2e13]: d
+        - generic [ref=f2e16]:
+          - generic [ref=f2e17]: o
+          - generic [ref=f2e18]: f
+        - generic [ref=f2e21]:
+          - generic [ref=f2e22]: G
+          - generic [ref=f2e23]: r
+          - generic [ref=f2e24]: o
+          - generic [ref=f2e25]: w
+          - generic [ref=f2e26]: t
+          - generic [ref=f2e27]: h
+        - generic [ref=f2e30]: "@"
+        - generic [ref=f2e34]:
+          - generic [ref=f2e35]: K
+          - generic [ref=f2e36]: i
+          - generic [ref=f2e37]: l
+          - generic [ref=f2e38]: o
+  - button "Copy link" [ref=f2e40]
+  - main [ref=f2e45]:
+    - main [ref=f2e46]:
+      - generic [ref=f2e47]:
+        - generic [ref=f2e48]:
+          - paragraph [ref=f2e49]: Blog
+          - heading "All writing" [level=1] [ref=f2e50]
+          - paragraph [ref=f2e51]: Notes on AI agents, growth, product, and building companies.
+        - generic [ref=f2e52]:
+          - link [ref=f2e53] [cursor=pointer]:
+            - /url: /blog/open-weights-is-all-you-need
+            - generic [ref=f2e55]:
+              - heading "Open Weights Is All You Need" [level=4] [ref=f2e56]
+              - paragraph [ref=f2e57]: Why open and closed models need a neutral routing layer.
+          - link [ref=f2e58] [cursor=pointer]:
+            - /url: /blog/kimi-k3-grok-45-built-the-same-database
+            - generic [ref=f2e60]:
+              - heading "Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price" [level=4] [ref=f2e61]
+              - paragraph [ref=f2e62]: The open-model path delivered comparable correctness and crash safety at 4% of the cost.
+          - link [ref=f2e63] [cursor=pointer]:
+            - /url: /blog/auto-model-vs-picking-your-own
+            - generic [ref=f2e65]:
+              - 'heading "Auto Model vs Picking Your Own: We Tested Kilo Code''s Router on a Backend Build" [level=4] [ref=f2e66]'
+              - paragraph [ref=f2e67]: Auto Model matched manually selected frontier models at less than half the cost.
+          - link [ref=f2e68] [cursor=pointer]:
+            - /url: /blog/no-second-deekseek-moment
+            - generic [ref=f2e70]:
+              - heading "Why we won't see another DeepSeek moment anytime soon" [level=4] [ref=f2e71]
+              - paragraph [ref=f2e72]: Frontier-class open models increase demand for scarce compute rather than reducing it.
+          - link [ref=f2e73] [cursor=pointer]:
+            - /url: /blog/ai-creates-jobs-compute-bill
+            - generic [ref=f2e75]:
+              - heading "AI creates jobs. The compute bill is not your problem (yet)." [level=4] [ref=f2e76]
+              - paragraph [ref=f2e77]: AI-heavy companies are growing headcount while infrastructure spending pressures pricing.
+          - link [ref=f2e78] [cursor=pointer]:
+            - /url: /blog/we-predicted-the-100kyr-per-dev-ai
+            - generic [ref=f2e80]:
+              - heading "We predicted the $100k/yr-per-dev AI bill. Now the winners are routing around it." [level=4] [ref=f2e81]
+              - paragraph [ref=f2e82]: Why model routing is becoming the enterprise cost-control layer for AI coding.
+          - link [ref=f2e83] [cursor=pointer]:
+            - /url: /blog/claude-fable-5-vs-gpt-5-5
+            - generic [ref=f2e85]:
+              - 'heading "Claude Fable 5 vs GPT-5.5: better planning, similar execution" [level=4] [ref=f2e86]'
+              - paragraph [ref=f2e87]: Claude Fable 5 wrote the sharper plan, but GPT-5.5 matched execution at lower cost.
+          - link [ref=f2e88] [cursor=pointer]:
+            - /url: /blog/the-github-copilot-bill-came-due
+            - generic [ref=f2e90]:
+              - heading "The GitHub Copilot Bill Came Due. Here's What Engineering Leaders Should Do." [level=4] [ref=f2e91]
+              - paragraph [ref=f2e92]: The era of free compute ended, and enterprise teams need model freedom and spend control.
+          - link [ref=f2e93] [cursor=pointer]:
+            - /url: /blog/your-coding-agent-will-get-ripped
+            - generic [ref=f2e95]:
+              - heading "Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It." [level=4] [ref=f2e96]
+              - paragraph [ref=f2e97]: Durable AI coding workflows need to survive vendor pivots across tools, models, and surfaces.
+          - link [ref=f2e98] [cursor=pointer]:
+            - /url: /blog/ai-agents-are-coming-for-every-role
+            - generic [ref=f2e100]:
+              - heading "AI Agents Are Coming for Every Role" [level=4] [ref=f2e101]
+              - paragraph [ref=f2e102]: Not to replace you, but to give you super powers.
+          - link [ref=f2e103] [cursor=pointer]:
+            - /url: /blog/how-i-use-kilo-for-slack-and-code-reviewer
+            - generic [ref=f2e105]:
+              - heading "How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role" [level=4] [ref=f2e106]
+              - paragraph [ref=f2e107]: Building an interactive pricing calculator with AI coding tools
+          - link [ref=f2e108] [cursor=pointer]:
+            - /url: https://posthog.com/customers/kilocode
+            - generic [ref=f2e110]:
+              - heading "How Kilo Code uses PostHog to power hyper-fast growth" [level=4] [ref=f2e111]
+              - paragraph [ref=f2e112]: A customer story on PostHog about scaling growth at Kilo Code
+  - contentinfo [ref=f2e113]:
+    - generic [ref=f2e115]:
+      - generic [ref=f2e116]: © 2026 Job Rietbergen.
+      - generic [ref=f2e117]:
+        - text: Photos by Wesley Verhoeve as part of the
+        - link "Flywheel project" [ref=f2e118] [cursor=pointer]:
+          - /url: https://vliegwiel.nl/
+        - text: .

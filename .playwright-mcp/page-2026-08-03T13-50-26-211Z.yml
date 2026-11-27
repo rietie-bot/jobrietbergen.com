@@ -1,0 +1,225 @@
+- generic [ref=f6e3]:
+  - banner [ref=f6e4]:
+    - generic [ref=f6e5]:
+      - link "Job Rietbergen" [ref=f6e6] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=f6e7]:
+        - generic [ref=f6e8]: Head of Growth @ Kilo
+        - generic [ref=f6e9]:
+          - generic [ref=f6e10]: H
+          - generic [ref=f6e11]: e
+          - generic [ref=f6e12]: a
+          - generic [ref=f6e13]: d
+        - generic [ref=f6e16]:
+          - generic [ref=f6e17]: o
+          - generic [ref=f6e18]: f
+        - generic [ref=f6e21]:
+          - generic [ref=f6e22]: G
+          - generic [ref=f6e23]: r
+          - generic [ref=f6e24]: o
+          - generic [ref=f6e25]: w
+          - generic [ref=f6e26]: t
+          - generic [ref=f6e27]: h
+        - generic [ref=f6e30]: "@"
+        - generic [ref=f6e34]:
+          - generic [ref=f6e35]: K
+          - generic [ref=f6e36]: i
+          - generic [ref=f6e37]: l
+          - generic [ref=f6e38]: o
+  - main [ref=f6e39]:
+    - generic [ref=f6e41]:
+      - img "Job Rietbergen — cover photo" [ref=f6e43]
+      - generic [ref=f6e44]:
+        - paragraph [ref=f6e45]:
+          - text: Builder and growth leader based in Amsterdam. Currently leading growth at
+          - link "Kilo" [ref=f6e46] [cursor=pointer]:
+            - /url: https://kilo.ai
+          - text: ", an open-source coding agent. Previously founded Alphadoc and Onjo AI. I'm hands-on across growth, data, product, and engineering."
+        - paragraph [ref=f6e47]: 15 years experience building and growing venture-scale companies. I've gone from zero to exit multiple times.
+        - paragraph [ref=f6e48]: “Learn to sell, learn to build. If you can do both, you'll be unstoppable.” — Naval
+    - generic [ref=f6e49]:
+      - heading "Ventures" [level=3] [ref=f6e50]
+      - generic [ref=f6e51]:
+        - link [ref=f6e52] [cursor=pointer]:
+          - /url: https://kilo.ai
+          - generic [ref=f6e54]:
+            - img "Kilo Code" [ref=f6e55]
+            - generic [ref=f6e56]:
+              - heading "Kilo Code" [level=4] [ref=f6e57]
+              - paragraph [ref=f6e58]: Open-source AI coding agent.
+        - generic [ref=f6e61]:
+          - img "Alphadoc" [ref=f6e62]
+          - generic [ref=f6e63]:
+            - heading "Alphadoc" [level=4] [ref=f6e64]
+            - paragraph [ref=f6e65]: Developer documentation platform.
+        - generic [ref=f6e68]:
+          - img "Onjo AI" [ref=f6e69]
+          - generic [ref=f6e70]:
+            - heading "Onjo AI" [level=4] [ref=f6e71]
+            - paragraph [ref=f6e72]: AI agents for GTM.
+    - generic [ref=f6e74]:
+      - img "Job Rietbergen — portrait" [ref=f6e76]
+      - img "Job Rietbergen — cover photo" [ref=f6e78]
+      - img "Job Rietbergen — Amsterdam" [ref=f6e80]
+      - img "Job Rietbergen — profile" [ref=f6e82]
+    - generic [ref=f6e86]:
+      - generic [ref=f6e87]:
+        - generic [ref=f6e88]:
+          - paragraph [ref=f6e89]: Speaking
+          - heading "Practical talks on AI, growth, and building from zero to one." [level=3] [ref=f6e90]
+          - paragraph [ref=f6e91]: I speak at events, podcasts, panels, and team sessions about applying AI agents in real workflows, building growth systems, and turning technical products into companies people care about.
+        - link "Invite me to speak" [ref=f6e92] [cursor=pointer]:
+          - /url: "#connect"
+      - generic [ref=f6e93]:
+        - img "Job Rietbergen presenting to an audience" [ref=f6e95]
+        - img "Job Rietbergen speaking on stage at an AI event" [ref=f6e97]
+        - img "Audience watching Job Rietbergen speak at an event" [ref=f6e99]
+        - img "Job Rietbergen speaking at an event" [ref=f6e101]
+        - img "Job Rietbergen giving a talk" [ref=f6e103]
+        - img "Job Rietbergen presenting with slides" [ref=f6e105]
+    - generic [ref=f6e106]:
+      - heading "Work Experience" [level=3] [ref=f6e107]
+      - generic [ref=f6e108]:
+        - link [ref=f6e109] [cursor=pointer]:
+          - /url: https://kilo.ai
+          - generic [ref=f6e111]:
+            - generic [ref=f6e112]:
+              - img "Kilo" [ref=f6e113]
+              - generic [ref=f6e114]:
+                - heading "Head of Growth" [level=4] [ref=f6e115]
+                - paragraph [ref=f6e116]: Kilo
+            - paragraph [ref=f6e117]: 2025 - Present
+        - generic [ref=f6e120]:
+          - generic [ref=f6e121]:
+            - img "Alphadoc" [ref=f6e122]
+            - generic [ref=f6e123]:
+              - heading "Co-founder & CEO" [level=4] [ref=f6e124]
+              - paragraph [ref=f6e125]: Alphadoc
+          - paragraph [ref=f6e126]: 2022 - 2024
+        - generic [ref=f6e129]:
+          - generic [ref=f6e130]:
+            - img "Onjo AI" [ref=f6e131]
+            - generic [ref=f6e132]:
+              - heading "Co-founder & CEO" [level=4] [ref=f6e133]
+              - paragraph [ref=f6e134]: Onjo AI
+          - paragraph [ref=f6e135]: 2024 - 2024
+        - link [ref=f6e136] [cursor=pointer]:
+          - /url: https://www.marketer.com/
+          - generic [ref=f6e138]:
+            - generic [ref=f6e139]:
+              - img "Marketer Technologies" [ref=f6e140]
+              - generic [ref=f6e141]:
+                - heading "Head of Growth" [level=4] [ref=f6e142]
+                - paragraph [ref=f6e143]: Marketer Technologies
+            - paragraph [ref=f6e144]: 2021 - 2022
+        - link [ref=f6e145] [cursor=pointer]:
+          - /url: https://founda.com
+          - generic [ref=f6e147]:
+            - generic [ref=f6e148]:
+              - img "Founda Health" [ref=f6e149]
+              - generic [ref=f6e150]:
+                - heading "CMO" [level=4] [ref=f6e151]
+                - paragraph [ref=f6e152]: Founda Health
+            - paragraph [ref=f6e153]: 2020 - 2021
+        - generic [ref=f6e156]:
+          - generic [ref=f6e157]:
+            - img "Growth Tribe" [ref=f6e158]
+            - generic [ref=f6e159]:
+              - heading "VP Growth" [level=4] [ref=f6e160]
+              - paragraph [ref=f6e161]: Growth Tribe
+          - paragraph [ref=f6e162]: 2015 - 2020
+        - link [ref=f6e163] [cursor=pointer]:
+          - /url: https://groupon.com
+          - generic [ref=f6e165]:
+            - generic [ref=f6e166]:
+              - img "Rocket Internet / CityDeal (→ Groupon)" [ref=f6e167]
+              - generic [ref=f6e168]:
+                - heading "Early Employee" [level=4] [ref=f6e169]
+                - paragraph [ref=f6e170]: Rocket Internet / CityDeal (→ Groupon)
+            - paragraph [ref=f6e171]: 2010 - 2013
+    - generic [ref=f6e172]:
+      - heading "Reading" [level=3] [ref=f6e173]
+      - generic [ref=f6e174]:
+        - link [ref=f6e175] [cursor=pointer]:
+          - /url: /blog/open-weights-is-all-you-need
+          - generic [ref=f6e177]:
+            - heading "Open Weights Is All You Need" [level=4] [ref=f6e178]
+            - paragraph [ref=f6e179]: Why open and closed models need a neutral routing layer.
+        - link [ref=f6e180] [cursor=pointer]:
+          - /url: /blog/kimi-k3-grok-45-built-the-same-database
+          - generic [ref=f6e182]:
+            - heading "Kimi K3 + Grok 4.5 Built the Same Database as Claude Opus 5 at 1/25th the Price" [level=4] [ref=f6e183]
+            - paragraph [ref=f6e184]: The open-model path delivered comparable correctness and crash safety at 4% of the cost.
+        - link [ref=f6e185] [cursor=pointer]:
+          - /url: /blog/auto-model-vs-picking-your-own
+          - generic [ref=f6e187]:
+            - 'heading "Auto Model vs Picking Your Own: We Tested Kilo Code''s Router on a Backend Build" [level=4] [ref=f6e188]'
+            - paragraph [ref=f6e189]: Auto Model matched manually selected frontier models at less than half the cost.
+        - link [ref=f6e190] [cursor=pointer]:
+          - /url: /blog/no-second-deekseek-moment
+          - generic [ref=f6e192]:
+            - heading "Why we won't see another DeepSeek moment anytime soon" [level=4] [ref=f6e193]
+            - paragraph [ref=f6e194]: Frontier-class open models increase demand for scarce compute rather than reducing it.
+        - link [ref=f6e195] [cursor=pointer]:
+          - /url: /blog/ai-creates-jobs-compute-bill
+          - generic [ref=f6e197]:
+            - heading "AI creates jobs. The compute bill is not your problem (yet)." [level=4] [ref=f6e198]
+            - paragraph [ref=f6e199]: AI-heavy companies are growing headcount while infrastructure spending pressures pricing.
+        - link [ref=f6e200] [cursor=pointer]:
+          - /url: /blog/we-predicted-the-100kyr-per-dev-ai
+          - generic [ref=f6e202]:
+            - heading "We predicted the $100k/yr-per-dev AI bill. Now the winners are routing around it." [level=4] [ref=f6e203]
+            - paragraph [ref=f6e204]: Why model routing is becoming the enterprise cost-control layer for AI coding.
+        - link [ref=f6e205] [cursor=pointer]:
+          - /url: /blog/claude-fable-5-vs-gpt-5-5
+          - generic [ref=f6e207]:
+            - 'heading "Claude Fable 5 vs GPT-5.5: better planning, similar execution" [level=4] [ref=f6e208]'
+            - paragraph [ref=f6e209]: Claude Fable 5 wrote the sharper plan, but GPT-5.5 matched execution at lower cost.
+        - link [ref=f6e210] [cursor=pointer]:
+          - /url: /blog/the-github-copilot-bill-came-due
+          - generic [ref=f6e212]:
+            - heading "The GitHub Copilot Bill Came Due. Here's What Engineering Leaders Should Do." [level=4] [ref=f6e213]
+            - paragraph [ref=f6e214]: The era of free compute ended, and enterprise teams need model freedom and spend control.
+        - link [ref=f6e215] [cursor=pointer]:
+          - /url: /blog/your-coding-agent-will-get-ripped
+          - generic [ref=f6e217]:
+            - heading "Your Coding Agent Will Get Ripped Out. Build Workflows That Survive It." [level=4] [ref=f6e218]
+            - paragraph [ref=f6e219]: Durable AI coding workflows need to survive vendor pivots across tools, models, and surfaces.
+        - link [ref=f6e220] [cursor=pointer]:
+          - /url: /blog/ai-agents-are-coming-for-every-role
+          - generic [ref=f6e222]:
+            - heading "AI Agents Are Coming for Every Role" [level=4] [ref=f6e223]
+            - paragraph [ref=f6e224]: Not to replace you, but to give you super powers.
+        - link [ref=f6e225] [cursor=pointer]:
+          - /url: /blog/how-i-use-kilo-for-slack-and-code-reviewer
+          - generic [ref=f6e227]:
+            - heading "How I Use Kilo for Slack and Code Reviewer to Scale My Growth Role" [level=4] [ref=f6e228]
+            - paragraph [ref=f6e229]: Building an interactive pricing calculator with AI coding tools
+        - link [ref=f6e230] [cursor=pointer]:
+          - /url: https://posthog.com/customers/kilocode
+          - generic [ref=f6e232]:
+            - heading "How Kilo Code uses PostHog to power hyper-fast growth" [level=4] [ref=f6e233]
+            - paragraph [ref=f6e234]: A customer story on PostHog about scaling growth at Kilo Code
+    - generic [ref=f6e235]:
+      - heading "Connect" [level=3] [ref=f6e236]
+      - paragraph [ref=f6e237]:
+        - text: Feel free to contact me at
+        - link "job@jobrietbergen.com" [ref=f6e238] [cursor=pointer]:
+          - /url: mailto:job@jobrietbergen.com
+      - generic [ref=f6e239]:
+        - link "LinkedIn" [ref=f6e241] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/jobrietbergen/
+        - link "𝕏" [ref=f6e245] [cursor=pointer]:
+          - /url: https://x.com/jobrietbergen
+        - link "GitHub" [ref=f6e249] [cursor=pointer]:
+          - /url: https://github.com/jobrietbergen
+        - link "Substack" [ref=f6e253] [cursor=pointer]:
+          - /url: https://jobkilo.substack.com
+  - contentinfo [ref=f6e256]:
+    - generic [ref=f6e258]:
+      - generic [ref=f6e259]: © 2026 Job Rietbergen.
+      - generic [ref=f6e260]:
+        - text: Photos by Wesley Verhoeve as part of the
+        - link "Flywheel project" [ref=f6e261] [cursor=pointer]:
+          - /url: https://vliegwiel.nl/
+        - text: .

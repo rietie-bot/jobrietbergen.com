@@ -1,0 +1,293 @@
+- generic [ref=f2e3]:
+  - banner [ref=f2e4]:
+    - generic [ref=f2e5]:
+      - link "Job Rietbergen" [ref=f2e6] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=f2e7]:
+        - generic [ref=f2e8]: Head of Growth @ Kilo
+        - generic [ref=f2e9]:
+          - generic [ref=f2e10]: H
+          - generic [ref=f2e11]: e
+          - generic [ref=f2e12]: a
+          - generic [ref=f2e13]: d
+        - generic [ref=f2e16]:
+          - generic [ref=f2e17]: o
+          - generic [ref=f2e18]: f
+        - generic [ref=f2e21]:
+          - generic [ref=f2e22]: G
+          - generic [ref=f2e23]: r
+          - generic [ref=f2e24]: o
+          - generic [ref=f2e25]: w
+          - generic [ref=f2e26]: t
+          - generic [ref=f2e27]: h
+        - generic [ref=f2e30]: "@"
+        - generic [ref=f2e34]:
+          - generic [ref=f2e35]: K
+          - generic [ref=f2e36]: i
+          - generic [ref=f2e37]: l
+          - generic [ref=f2e38]: o
+  - button "Copy URL" [ref=f2e40]:
+    - paragraph [ref=f2e41]:
+      - generic [ref=f2e42]: C
+      - generic [ref=f2e43]: o
+      - generic [ref=f2e44]: p
+      - generic [ref=f2e45]: "y"
+    - generic [ref=f2e46]: URL
+  - main [ref=f2e47]:
+    - 'heading "Auto Model vs Picking Your Own: We Tested Kilo Code''s Router on a Backend Build" [level=1] [ref=f2e48]'
+    - paragraph [ref=f2e49]:
+      - emphasis [ref=f2e50]: Jul 27, 2026 · by Job Rietbergen
+    - separator [ref=f2e51]
+    - paragraph [ref=f2e52]: The pace of new model releases has made "which model should I use for this?" a real problem. Just in the last month we saw Claude Sonnet 5, Claude Fable 5, GPT-5.6, Grok 4.5, Gemini 3.6 Flash, and Kimi K3, and keeping track of which one is best (and cheapest) for planning versus implementation is now a task on its own.
+    - paragraph [ref=f2e53]:
+      - link "Auto Model" [ref=f2e54] [cursor=pointer]:
+        - /url: https://kilo.ai/docs/code-with-ai/agents/auto-model
+      - text: "is Kilo Code's answer to that: you pick a tier (frontier, balanced, efficient, or free) and the router selects the underlying model per request. We ran an experiment to see whether letting the router decide can hold up against manually picking models by hand."
+    - paragraph [ref=f2e55]:
+      - img "Auto Model experiment overview" [ref=f2e56]
+    - paragraph [ref=f2e57]:
+      - strong [ref=f2e58]: "TL;DR:"
+      - text: On this experiment, all three setups produced functionally identical services (each passed the same 29 of 30 logic checks). The differences were cost and contract adherence, not correctness. The Auto pipeline (frontier to plan, efficient to implement) cost $1.26 total against $2.90 for GPT-5.6 Sol everywhere and $2.47 for Claude Sonnet 5 everywhere, and it was the only run that matched the fixed API contract exactly.
+    - heading "Why we stopped using one model for everything" [level=2] [ref=f2e59]
+    - paragraph [ref=f2e60]:
+      - text: Over the last few posts we have kept measuring the same thing. When we compared
+      - link "Claude Fable 5 against GPT-5.5" [ref=f2e61] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/claude-fable-5-vs-gpt-5-5
+      - text: ", the two models split on planning but implemented the same plan almost interchangeably, and the cheaper model built the same passing service for well under half the cost. When we compared"
+      - link "GPT-5.6 Sol against Fable 5 on planning" [ref=f2e62] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/sol-vs-fable?utm_source=publication-search
+      - text: ", the gap that used to exist between flagships on implementation was gone."
+      - strong [ref=f2e63]: The conclusion we keep arriving at is that you do not need the most expensive model for every step.
+      - text: Frontier models are worth their price on the hard reasoning (planning, architecture), and a cheaper model is usually enough to build a plan that is already decided.
+    - paragraph [ref=f2e64]: The problem is that acting on this by hand is tedious. You have to remember which model is strong at what, switch models when you change modes, and re-check your assumptions every time a new release lands. Auto Model moves that decision into the router. You choose how much capability you want to pay for, and the system routes each request accordingly.
+    - heading "What Auto Model does" [level=2] [ref=f2e65]
+    - paragraph [ref=f2e66]:
+      - link "Auto Model" [ref=f2e67] [cursor=pointer]:
+        - /url: https://kilo.ai/auto-model
+      - text: is a routing layer with four tiers. Frontier routes to the most capable paid models and uses different models for reasoning-heavy work than for implementation. Balanced routes to one cost-effective model across modes. Efficient classifies the difficulty of each request in real time and routes to the cheapest model its
+      - link "benchmarks" [ref=f2e68] [cursor=pointer]:
+        - /url: https://kilo.ai/kilobench
+      - text: show is accurate enough, falling back to Balanced if it cannot decide. Free routes to the best available free models. The underlying models behind each tier change server-side as pricing and availability shift, and the expanded model picker shows which model handled each request.
+    - paragraph [ref=f2e69]: "Kilo shows an estimated per-token price for each tier in the model picker. Because a tier routes to different models over time, these are moving averages rather than a fixed rate, but they set the scale:"
+    - paragraph [ref=f2e70]:
+      - img "Auto Model tier prices" [ref=f2e71]
+    - paragraph [ref=f2e72]: Each tier carries a 1M-token context window. The efficient tier's estimated average is about a fourteenth of frontier's per token, which is the scale behind the cost difference we saw in the run.
+    - paragraph [ref=f2e73]:
+      - text: "The tier we cared about for this test is the split the earlier posts pointed at: plan with the frontier tier, implement with the efficient tier. You can learn more about this router"
+      - link "here" [ref=f2e74] [cursor=pointer]:
+        - /url: https://kilo.ai/docs/code-with-ai/agents/auto-model
+      - text: .
+    - heading "We gave three setups the same task and compared them end to end." [level=2] [ref=f2e75]
+    - paragraph [ref=f2e76]:
+      - img "Three model setups used in the experiment" [ref=f2e77]
+    - paragraph [ref=f2e78]: We chose Sonnet as the second setup on purpose. Claude Sonnet 5 is a popular, efficient model that a lot of developers reach for by default, so the comparison puts the Auto Model pipeline against the two things people actually do today rather than against a deliberately weak model.
+    - heading "The task" [level=3] [ref=f2e79]
+    - paragraph [ref=f2e80]: "Each setup built a multi-tenant expense reimbursement API in TypeScript, Bun, and SQLite. Organizations have teams, users hold roles (member, approver, admin), members submit expenses against a team budget, approvers approve or reject them, admins mark approved expenses paid, and every change lands in an audit log. We picked this because it is dense with the kind of rules that are easy to get subtly wrong: a state machine, per-tenant isolation, a budget that must hold under concurrent approvals, and money that must never be double-counted."
+    - paragraph [ref=f2e81]: We fixed the external API contract in the prompt (the exact endpoints, field names, response shapes, status codes, and a seed fixture with exact IDs and tokens) because an external test suite would run against it. Everything else (framework, database layout, project structure) was left to the model. We also told each model to use its best judgment rather than ask clarifying questions, so the plans would be comparable.
+    - paragraph [ref=f2e82]: "Here is the shape of what we pinned, and what we deliberately left unsaid:"
+    - blockquote [ref=f2e83]:
+      - paragraph [ref=f2e84]:
+        - text: "Budget invariant: for each team, the sum of"
+        - code [ref=f2e85]:
+          - text: "`"
+          - generic [ref=f2e86]: amount_cents
+          - text: "`"
+        - text: across its
+        - code [ref=f2e87]:
+          - text: "`"
+          - generic [ref=f2e88]: approved
+          - text: "`"
+        - text: and
+        - code [ref=f2e89]:
+          - text: "`"
+          - generic [ref=f2e90]: paid
+          - text: "`"
+        - text: expenses must never exceed the team's
+        - code [ref=f2e91]:
+          - text: "`"
+          - generic [ref=f2e92]: budget_cents
+          - text: "`"
+        - text: . An approval that would break this must fail with 422 and change nothing.
+    - paragraph [ref=f2e93]:
+      - text: "The contract states the rule. It never says the budget check has to survive two approvals arriving at the same instant. We seeded ten of these traps: the concurrency cases, whether an approver can approve their own expense, whether a request body can smuggle in a"
+      - code [ref=f2e94]:
+        - text: "`"
+        - generic [ref=f2e95]: "status: \"approved\""
+        - text: "`"
+      - text: field, whether one organization can read another's data by guessing an ID, and several validation edges. None of the traps were named in the prompt. Whether a model defends against them is part of what we measured.
+    - heading "How we ran it and graded it" [level=3] [ref=f2e96]
+    - paragraph [ref=f2e97]:
+      - text: We used the
+      - link "Kilo Code CLI" [ref=f2e98] [cursor=pointer]:
+        - /url: https://kilo.ai/cli
+      - text: ". Each setup planned in a fresh session with the plan agent, then implemented in a separate fresh session with the code agent, given only the plan.md its own planning run produced. The implementation prompt was one line:"
+    - blockquote [ref=f2e99]:
+      - paragraph [ref=f2e100]: Implement the plan in plan.md. Follow it as written. Run the tests to verify your work before finishing.
+    - paragraph [ref=f2e101]: We graded in two passes, both written before any run existed. First, a weighted rubric scored the three plans. Second, a 30-check acceptance suite written in Python that ran against each finished service, grouped into functional, authorization, input handling, concurrency, and audit checks. The suite is black-box (it talks to the running server over HTTP) and asserts on status codes and observable state, so response wording does not matter but real behavior does.
+    - heading "Cost and time" [level=2] [ref=f2e102]
+    - paragraph [ref=f2e103]: This is the clearest result, so we will start here.
+    - paragraph [ref=f2e104]:
+      - img "Cost and time by setup" [ref=f2e105]
+    - paragraph [ref=f2e106]:
+      - text: The Auto Model pipeline was the cheapest overall, and it got there in a way worth explaining. Its frontier-tier plan was the single most expensive phase in the whole experiment at $0.92, but its efficient-tier implementation cost $0.34, roughly one seventh of the $2.29 that Sol and Sonnet each spent implementing.
+      - strong [ref=f2e107]: The pipeline spent up on planning, where model quality matters most, and saved heavily on implementation, where our results say it did not need to spend.
+    - paragraph [ref=f2e108]: "The router's choices are visible in the model picker. Here is what each Auto Model tier actually selected on this run:"
+    - paragraph [ref=f2e109]:
+      - img "Models selected by Auto Model tiers" [ref=f2e110]
+    - paragraph [ref=f2e111]: So the plan was written by Claude Opus 5 and the code was written mostly by MiniMax M3. The underlying models can change over time, so treat this as a snapshot of what the tiers resolved to on the day we ran it.
+    - heading "The plans" [level=2] [ref=f2e112]
+    - paragraph [ref=f2e113]: We scored the three plans against a rubric covering requirement coverage, technical correctness, failure modes, security, decision quality, implementability, operability, and communication, written before we ran the experiment.
+    - paragraph [ref=f2e114]:
+      - img "Plan rubric scores" [ref=f2e115]
+    - paragraph [ref=f2e116]: All three were plans a team could build from. The two strongest took opposite approaches to correctness. Sol's plan pushed the rules into the database with composite tenant keys and triggers enforcing the state machine and the budget ceiling. Auto's plan kept the rules in application code with a compare-and-swap on status and a post-update budget recheck. Both are defensible.
+    - paragraph [ref=f2e117]:
+      - img "Auto Model plan" [ref=f2e118]
+    - paragraph [ref=f2e119]:
+      - emphasis [ref=f2e120]: Auto Model's Plan
+    - paragraph [ref=f2e121]: The one behavior that separated the plans was self-approval. An approver can create and submit their own expense, and the contract never says they cannot then approve it. Auto's plan was the only one to raise this and make a call, choosing to allow it (matching the literal contract) and flagging it for review. The other two plans did not address it.
+    - heading "The acceptance run" [level=2] [ref=f2e122]
+    - paragraph [ref=f2e123]: We report two numbers per setup. "As delivered" is the strict suite against the fixed contract, which is what an external integrator gets. "Logic" is the same suite after normalizing for response-shape deviations, which isolates whether the behavior is right.
+    - paragraph [ref=f2e124]:
+      - img "Acceptance test results" [ref=f2e125]
+    - paragraph [ref=f2e126]: Producing the logic column took a little extra work, because the test script was written against the exact contract and two of the services did not follow it. The script talks to each server over HTTP and expects the contract's names and shapes. Auto matched the contract, so it ran unchanged and scored 29/30.
+    - paragraph [ref=f2e127]: Sol did not match it. It used different field names and returned differently shaped responses (we cover the specifics below), so the unmodified script failed at the door on almost every check, and Sol scored 3/30 as delivered. To see whether Sol's actual behavior was correct, we made a copy of the script that only translates between the contract's names and Sol's own and left every rule check exactly as strict. Against that copy, Sol scored 29/30. Sonnet needed no changes to the script. Its one deviation was a missing user in its seed data, which blocked three checks that sign in as that user, and we confirmed the behavior those checks cover was correct on its own.
+    - paragraph [ref=f2e128]:
+      - text: The most important result is the right-hand column.
+      - strong [ref=f2e129]: On logic, all three were identical.
+      - text: Each one enforced the state machine, blocked cross-tenant reads and mutations, rejected the smuggled
+      - code [ref=f2e130]:
+        - text: "`"
+        - generic [ref=f2e131]: status
+        - text: "`"
+      - text: "field on both create and update, held the budget under concurrent approvals, and logged every change. Three different pipelines, including one that implemented with MiniMax M3 for 34 cents, produced functionally interchangeable services. This is the same pattern we found in the earlier posts: once a decent plan exists, the model that implements it stops deciding whether the logic is correct."
+    - paragraph [ref=f2e132]: The one check every setup failed was self-approval. None of the three shipped a block on an approver approving their own expense. Because the contract never forbids it, we treat this as a judgment call the models made rather than a bug, and it is worth noting that the setup which came closest to catching it was Auto, whose plan at least surfaced the question.
+    - heading "Where the models drifted" [level=2] [ref=f2e133]
+    - paragraph [ref=f2e134]:
+      - strong [ref=f2e135]: Correctness converged, so the real story is adherence.
+      - text: Each setup drifted from what it was asked to do, but in a different place.
+    - paragraph [ref=f2e136]:
+      - strong [ref=f2e137]: Sol drifted on the contract, the part a caller depends on.
+      - text: Its logic was sound, but the delivered service did not match the fixed contract in several ways.
+      - code [ref=f2e138]:
+        - text: "`"
+        - generic [ref=f2e139]: GET /me
+        - text: "`"
+      - text: returned a
+      - code [ref=f2e140]:
+        - text: "`"
+        - generic [ref=f2e141]: memberships
+        - text: "`"
+      - text: array instead of the pinned
+      - code [ref=f2e142]:
+        - text: "`"
+        - generic [ref=f2e143]: teams
+        - text: "`"
+      - text: field. Two list endpoints returned bare arrays instead of the documented
+      - code [ref=f2e144]:
+        - text: "`"
+        - generic [ref=f2e145]: "{ \"expenses\": [...] }"
+        - text: "`"
+      - text: and
+      - code [ref=f2e146]:
+        - text: "`"
+        - generic [ref=f2e147]: "{ \"entries\": [...] }"
+        - text: "`"
+      - text: shapes. The Engineering team was seeded as
+      - code [ref=f2e148]:
+        - text: "`"
+        - generic [ref=f2e149]: team_engineering
+        - text: "`"
+      - text: instead of
+      - code [ref=f2e150]:
+        - text: "`"
+        - generic [ref=f2e151]: team_eng
+        - text: "`"
+      - text: ", with a budget of 100000 instead of 500000, and the category list shipped"
+      - code [ref=f2e152]:
+        - text: "`"
+        - generic [ref=f2e153]: supplies
+        - text: "`"
+      - text: where the contract specified
+      - code [ref=f2e154]:
+        - text: "`"
+        - generic [ref=f2e155]: equipment
+        - text: "`"
+      - text: and
+      - code [ref=f2e156]:
+        - text: "`"
+        - generic [ref=f2e157]: software
+        - text: "`"
+      - text: . On the strict suite this is the difference between 3 of 30 and 29 of 30. What makes it notable is that Sol's own plan had listed "the contract's paths, field names, and status codes match exactly" as an explicit success criterion. The plan was right about what to build. The build did not follow it. Its tests made the drift invisible, because they were written against its own wrong seed, so the suite passed while the contract was broken. A model that drifts from the spec and then tests against the drifted version will report green while shipping something a client cannot use.
+    - paragraph [ref=f2e158]:
+      - strong [ref=f2e159]: Auto drifted on the internal design, and the runtime hid it.
+      - text: Its contract adherence was exact, but the code diverged from its own plan where the plan mattered most. The plan said services own transactions, yet the transaction helper it wrote is dead code used only by the seed script, and every approval writes its row and its audit entry as two separate unwrapped statements. The compare-and-swap guard the plan described is never called either. Auto still passed all three concurrency checks, most likely because Bun's synchronous SQLite runs each request's read-decide-write to completion before the next begins. In other words, the safety came from the runtime, not from the design the plan specified. On a different deployment (multiple processes, or an async driver) that same code could overspend a budget. The acceptance suite could not see this because it drives a single server process. Only reading the code surfaced it.
+    - paragraph [ref=f2e160]:
+      - strong [ref=f2e161]: Sonnet drifted the least.
+      - text: Its only contract miss was a missing seeded user (
+      - code [ref=f2e162]:
+        - text: "`"
+        - generic [ref=f2e163]: usr_eng_member2
+        - text: "`"
+      - text: did not authenticate), which cost it three checks whose underlying behavior was otherwise correct. Its logic and shapes were fine. Internally it broke the same kind of rule Auto did (its plan put transactions in the repository layer and the code opened them in the route handlers), with no visible effect here.
+    - heading "The code" [level=2] [ref=f2e164]
+    - paragraph [ref=f2e165]: We also reviewed the three codebases for structure and cleanliness only, not behavior.
+    - paragraph [ref=f2e166]:
+      - img "Code quality review scores" [ref=f2e167]
+    - paragraph [ref=f2e168]:
+      - text: Each codebase matched its own plan's stated structure. Sonnet was the easiest to navigate and the only one with comments that explained real decisions, though it copy-pasted its transaction-and-audit block ten times. Auto had the best architecture on paper and by far the best test suite (area-split tests plus pure domain unit tests and a real concurrency test), undercut by the dead abstractions noted above. Sol was the tightest and best-typed (no
+      - code [ref=f2e169]:
+        - text: "`"
+        - generic [ref=f2e170]: any
+        - text: "`"
+      - text: ", no unchecked casts) but had zero comments across a thousand lines and duplicated each handler's authorization check twice."
+    - heading "What this means" [level=2] [ref=f2e171]
+    - paragraph [ref=f2e172]:
+      - strong [ref=f2e173]: The Auto Model pipeline matched a frontier model at roughly half the cost.
+      - text: It planned with Claude Opus 5, implemented with MiniMax M3 for $1.26 total against $2.90 for GPT-5.6 Sol everywhere, and passed the same logic checks as both single-model setups. Letting the router spend on the plan and save on the implementation produced the same working service for less, which is the split the last few experiments pointed at and the one Auto's frontier-to-efficient tiers make for you.
+    - paragraph [ref=f2e174]:
+      - img "Auto Model cost and quality summary" [ref=f2e175]
+    - paragraph [ref=f2e176]:
+      - strong [ref=f2e177]: Correct logic is not the same as correct delivery.
+      - text: Sol wrote sound logic and still shipped a service a client could not talk to, because it drifted from the fixed contract on field names, response shapes, and seed values. Its own tests were written against that drift, so they passed while the contract was broken. Whatever model you use, check the output against the contract yourself rather than trusting a green test run.
+    - paragraph [ref=f2e178]:
+      - strong [ref=f2e179]: A passing concurrency test does not prove the design is safe.
+      - text: Auto held the budget under concurrent approvals, but it did so because the runtime serialized the writes, not because the transaction code its plan described was in place. That code was never called. The check passed on a single process and could fail on another deployment. A test tells you what happened on the run, not what the code guarantees.
+    - paragraph [ref=f2e180]:
+      - text: What this adds up to is
+      - strong [ref=f2e181]: a case for not making the model choice yourself on every task.
+      - text: Once a plan exists, the model that builds it moves the cost far more than the result, and keeping track of which model that should be, as new ones keep landing, is its own ongoing job. On this build the router handled that split on its own. It planned with the strongest model available and built with a cheap one, and the service it produced matched the frontier-everywhere build check for check, cost less than half as much, and was the only one of the three to honor the contract exactly. The models have caught up to each other on the building.
+      - strong [ref=f2e182]: Where they still differ is cost and discipline, and those are the parts the router is now deciding for you.
+    - paragraph [ref=f2e183]:
+      - img "Auto Model picker in Kilo Code" [ref=f2e184]
+    - paragraph [ref=f2e185]:
+      - text: If you want to try this yourself, open the model picker in the Kilo Code surface of your choice (VS Code, JetBrains, or CLI). The Auto Model tiers sit at the top of the list. Pick one, such as
+      - strong [ref=f2e186]: Auto Frontier
+      - text: for planning and
+      - strong [ref=f2e187]: Auto Efficient
+      - text: for building, and start working in any mode. The expanded picker shows which model each request routed to and what it cost, so you can see the same breakdown we used here.
+    - separator [ref=f2e188]
+    - paragraph [ref=f2e189]:
+      - strong [ref=f2e190]:
+        - text: Testing performed using
+        - link "Kilo Code" [ref=f2e191] [cursor=pointer]:
+          - /url: https://kilo.ai/
+      - text: ", a free open-source AI coding assistant for"
+      - link "VS Code" [ref=f2e192] [cursor=pointer]:
+        - /url: https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code
+      - text: and
+      - link "JetBrains" [ref=f2e193] [cursor=pointer]:
+        - /url: https://plugins.jetbrains.com/plugin/28350-kilo-code
+      - text: with 3,000,000+ Kilo Coders.
+    - blockquote [ref=f2e194]:
+      - text: This post originally appeared on
+      - link "the Kilo Blog" [ref=f2e195] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/auto-model-vs-picking-your-own
+      - text: .
+  - contentinfo [ref=f2e196]:
+    - generic [ref=f2e198]:
+      - generic [ref=f2e199]: © 2026 Job Rietbergen.
+      - generic [ref=f2e200]:
+        - text: Photos by Wesley Verhoeve as part of the
+        - link "Flywheel project" [ref=f2e201] [cursor=pointer]:
+          - /url: https://vliegwiel.nl/
+        - text: .

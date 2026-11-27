@@ -1,0 +1,153 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Job Rietbergen" [ref=e6] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e7]:
+        - generic [ref=e8]: Head of Growth @ Kilo
+        - generic [ref=e9]:
+          - generic [ref=e10]: H
+          - generic [ref=e11]: e
+          - generic [ref=e12]: a
+          - generic [ref=e13]: d
+        - generic [ref=e16]:
+          - generic [ref=e17]: o
+          - generic [ref=e18]: f
+        - generic [ref=e21]:
+          - generic [ref=e22]: G
+          - generic [ref=e23]: r
+          - generic [ref=e24]: o
+          - generic [ref=e25]: w
+          - generic [ref=e26]: t
+          - generic [ref=e27]: h
+        - generic [ref=e30]: "@"
+        - generic [ref=e34]:
+          - generic [ref=e35]: K
+          - generic [ref=e36]: i
+          - generic [ref=e37]: l
+          - generic [ref=e38]: o
+  - button "Copy URL" [ref=e40]:
+    - paragraph [ref=e41]:
+      - generic [ref=e42]: C
+      - generic [ref=e43]: o
+      - generic [ref=e44]: p
+      - generic [ref=e45]: "y"
+    - generic [ref=e46]: URL
+  - main [ref=e47]:
+    - heading "Open Weights Is All You Need" [level=1] [ref=e48]
+    - heading "Kilo's perspective on the Open Weights AI letter." [level=3] [ref=e49]
+    - paragraph [ref=e50]:
+      - emphasis [ref=e51]: Jul 31, 2026 · by Job Rietbergen
+    - separator [ref=e52]
+    - paragraph [ref=e53]:
+      - text: Last week, more than 230 organizations signed the
+      - link "Open Weights and American AI Leadership letter" [ref=e54] [cursor=pointer]:
+        - /url: https://www.microsoft.com/en-us/corporate-responsibility/topics/open-weight/
+      - text: ", asking Washington to protect the open weight ecosystem instead of restricting it. Anaconda, our new parent company,"
+      - link "is among them" [ref=e55] [cursor=pointer]:
+        - /url: https://www.anaconda.com/blog/anaconda-open-weights-ai-letter
+      - text: . NVIDIA's Jensen Huang announced the coalition behind it in his first ever post on X. It was a good week for open.
+    - paragraph [ref=e56]: Now, we're bringing the data to back up the need for an open ecosystem.
+    - paragraph [ref=e57]:
+      - text: Kilo doesn't make models. We don't host them, we don't train on or retain your data. We're the application and routing layer, the part that sends each coding task to whichever inference you choose, through approved providers and policies for your organization.
+      - link "Our data" [ref=e58] [cursor=pointer]:
+        - /url: https://kilo.ai/leaderboard/race
+      - text: is worth something in this debate, because we have no side in the open-versus-closed battle. We just watch which models builders actually use.
+    - paragraph [ref=e59]: Here's what we see.
+    - paragraph [ref=e60]:
+      - 'img "Share of all token usage: open-weight vs proprietary, week of Jul 20, 2026" [ref=e61]'
+    - paragraph [ref=e62]:
+      - emphasis [ref=e63]: "Share of all token usage: open-weight vs proprietary. Week of Jul 20, 2026"
+    - paragraph [ref=e64]:
+      - text: As of the week of July 20, 2026, open-weight models accounted for
+      - strong [ref=e65]: 79.1% of all token usage on Kilo
+      - text: . Proprietary models were the remaining 20.9%. And that number is not finished climbing. Not long ago open weights were a small minority of the traffic. Today they're a capable workhorse in the inference stack.
+    - paragraph [ref=e66]:
+      - 'img "Share of all token usage: open-weight vs proprietary, week of Jul 21, 2025" [ref=e67]'
+    - paragraph [ref=e68]:
+      - emphasis [ref=e69]: "Share of all token usage: open-weight vs proprietary. Week of Jul 21, 2025"
+    - paragraph [ref=e70]:
+      - text: "When Jensen Huang shared the letter, he made a point we agree with completely: the world needs both frontier closed models"
+      - emphasis [ref=e71]: and
+      - text: "frontier open ones. Our data supports that. Closed frontier models are excellent at the hardest problems, and builders use them there. But for the other ~80% of the work, open weights often win on a combination of these things: accuracy on the specific task, cost, privacy, and the freedom to run them where you want."
+    - heading "The model boom" [level=2] [ref=e72]
+    - paragraph [ref=e73]:
+      - text: A year ago, "which model to use" was a short conversation. Now a new one lands almost every week from the likes of Nemotron, Qwen, GLM, MiniMax, Kimi, Mistral, and the frontier labs. And the
+      - link "list goes on" [ref=e74] [cursor=pointer]:
+        - /url: https://kilo.ai/leaderboard
+      - text: . The menu has exploded, and no single model wins every task.
+    - paragraph [ref=e75]:
+      - img "Open-weight usage by lab" [ref=e76]
+    - paragraph [ref=e77]:
+      - emphasis [ref=e78]: Open-weight usage by lab
+    - paragraph [ref=e79]: That is why routing is becoming some of the most valuable real estate in tech, and it is why we build the way we do. Kilo partners with the labs instead of competing with them, so our only job is to get you to the right model, not to steer you toward one we happen to own.
+    - paragraph [ref=e80]: That distinction matters more as everyone rushes to build routing. A healthy ecosystem is not one big model that everyone depends on. It is many good closed and open ones. Open weights you can run on your own terms, and integrate it deep into your stack, instead of renting access. The explosion of capable open models means less dependency and resilience for organizations.
+    - paragraph [ref=e81]:
+      - text: The same logic applies to the layer on top. A routing layer owned by a model vendor is not neutral, because it has a reason to prefer its own models. The ecosystem needs a neutral layer, not another lock-in. Our
+      - link "leaderboard" [ref=e82] [cursor=pointer]:
+        - /url: https://kilo.ai/leaderboard
+      - text: consistently shows NVIDIA Nemotron and MoonshotAI models sitting alongside frontier labs like OpenAI and Anthropic, and that is not going to change.
+    - paragraph [ref=e83]:
+      - strong [ref=e84]: The future of AI is choice, routing, and an ecosystem where open and closed models work together.
+    - heading "Look who signed" [level=2] [ref=e85]
+    - paragraph [ref=e86]: "The letter reads like a map of the ecosystem we already route across every day. Among the signatories are companies at every layer of the stack we partner with:"
+    - list [ref=e87]:
+      - listitem [ref=e88]:
+        - strong [ref=e89]: "Silicon and cloud:"
+        - text: NVIDIA, Amazon
+      - listitem [ref=e90]:
+        - strong [ref=e91]: "Model labs:"
+        - text: Mistral, OpenAI, Arcee
+      - listitem [ref=e92]:
+        - strong [ref=e93]: "Inference and serving:"
+        - text: FriendliAI, Morph
+      - listitem [ref=e94]:
+        - strong [ref=e95]: "Local runtime:"
+        - text: Ollama
+      - listitem [ref=e96]:
+        - strong [ref=e97]: "Deploy and frontend:"
+        - text: Vercel
+    - paragraph [ref=e98]: These are the partners whose models and infrastructure show up in Kilo sessions every day.
+    - heading "Open from day one" [level=2] [ref=e99]
+    - paragraph [ref=e100]:
+      - text: None of this is just a reaction to a policy moment.
+      - link "Model freedom" [ref=e101] [cursor=pointer]:
+        - /url: https://kilo.ai/model-freedom
+      - text: "has been a first-class feature at Kilo since the start: open-weight models and local hosting alongside the closed frontier APIs, all from one platform."
+    - paragraph [ref=e102]:
+      - text: In practice that means you can route through your existing vendor contracts by bringing your own keys, or run local and private models where policy requires, across every developer surface. For teams with data-residency requirements, that same routing control is what makes an
+      - link "EU-first setup" [ref=e103] [cursor=pointer]:
+        - /url: https://kilo.ai/eu
+      - text: possible without giving up model choice.
+    - heading "Backed by benchmarks" [level=2] [ref=e104]
+    - paragraph [ref=e105]:
+      - text: Yesterday we published a
+      - link "head-to-head benchmark" [ref=e106] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/kimi-k3-grok-45-built-the-same-database
+      - text: where an open model, Kimi K3, and a closed frontier model built the same database, and the open-model path came out significantly cheaper for a comparable result. Open weights aren't just the affordable option anymore. In real world scenarios, they're competitive.
+    - paragraph [ref=e107]:
+      - text: We've written before about why betting your entire stack on one side is the real risk. In
+      - link "\"OpenRouter, Opus 5, and the Era of Model Freedom\"" [ref=e108] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/openrouter-opus-5-and-the-era-of
+      - text: ", we argued that walled gardens are giving way to routing and choice."
+    - heading "Why Anaconda + Kilo" [level=2] [ref=e109]
+    - paragraph [ref=e110]: For an enterprise, this is more than a developer convenience. The intelligence your products and decisions run on is core infrastructure, and core infrastructure is not something to outsource entirely to a single vendor. Owning your intelligence means you can keep it, understand it, and stand behind it.
+    - paragraph [ref=e111]: "Ownership pays off if you can govern it: decide which models and providers are approved, see where inference runs. That is the pairing behind Anaconda and Kilo. For more than a decade, Anaconda has shown that open and well-governed are not opposites, building the trusted foundation that tens of millions of Python and data-science developers rely on at the package layer. Kilo does the same one layer up, at the inference layer, giving teams model freedom while ensuring enterprises stay compliant."
+    - heading "The bottom line" [level=2] [ref=e112]
+    - paragraph [ref=e113]: Open weights don't need to beat closed models, and we're already seeing the positive effect from open models on a daily basis. They let you own your intelligence and depend less on any single vendor. That's what the letter protects, and our data shows why it's worth protecting. The open ecosystem is already carrying most of the load. The healthiest future for AI is both open and closed together, and the best way to keep it that way is to make sure nobody has to pick a side.
+    - paragraph [ref=e114]:
+      - strong [ref=e115]: That's the whole idea behind model freedom.
+    - separator [ref=e116]
+    - blockquote [ref=e117]:
+      - text: This post originally appeared on
+      - link "the Kilo Blog" [ref=e118] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/open-weights-is-all-you-need
+      - text: .
+  - contentinfo [ref=e119]:
+    - generic [ref=e121]:
+      - generic [ref=e122]: © 2026 Job Rietbergen.
+      - generic [ref=e123]:
+        - text: Photos by Wesley Verhoeve as part of the
+        - link "Flywheel project" [ref=e124] [cursor=pointer]:
+          - /url: https://vliegwiel.nl/
+        - text: .

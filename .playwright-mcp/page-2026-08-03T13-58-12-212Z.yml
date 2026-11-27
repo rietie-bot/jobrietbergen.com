@@ -1,0 +1,227 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Job Rietbergen" [ref=e6] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e7]:
+        - generic [ref=e8]: Head of Growth @ Kilo
+        - generic [ref=e9]:
+          - generic [ref=e10]: H
+          - generic [ref=e11]: e
+          - generic [ref=e12]: a
+          - generic [ref=e13]: d
+        - generic [ref=e16]:
+          - generic [ref=e17]: o
+          - generic [ref=e18]: f
+        - generic [ref=e21]:
+          - generic [ref=e22]: G
+          - generic [ref=e23]: r
+          - generic [ref=e24]: o
+          - generic [ref=e25]: w
+          - generic [ref=e26]: t
+          - generic [ref=e27]: h
+        - generic [ref=e30]: "@"
+        - generic [ref=e34]:
+          - generic [ref=e35]: K
+          - generic [ref=e36]: i
+          - generic [ref=e37]: l
+          - generic [ref=e38]: o
+  - button "Copy URL" [ref=e40]:
+    - paragraph [ref=e41]:
+      - generic [ref=e42]: C
+      - generic [ref=e43]: o
+      - generic [ref=e44]: p
+      - generic [ref=e45]: "y"
+    - generic [ref=e46]: URL
+  - main [ref=e47]:
+    - 'heading "Claude Fable 5 vs GPT-5.5: better planning, similar execution" [level=1] [ref=e48]'
+    - paragraph [ref=e49]:
+      - emphasis [ref=e50]: Jun 13, 2026 · by Darko Gjorgjievski and Job Rietbergen
+    - separator [ref=e51]
+    - paragraph [ref=e52]:
+      - strong [ref=e53]: "Update:"
+      - text: We wrote this post on June 11 and published it on June 13. Anthropic has since
+      - link "disabled" [ref=e54] [cursor=pointer]:
+        - /url: https://x.com/AnthropicAI/status/2065597531644743999
+      - text: access to Claude Fable 5 after a US government directive, which makes some of these results even more relevant. Fable 5 was a strong model, especially at planning, but our testing did not show a massive jump on coding ability when it came to execution (many people were hyping this on social media). Once we had a detailed plan, GPT-5.5 performed similarly on execution.
+    - paragraph [ref=e55]:
+      - strong [ref=e56]: "The post:"
+    - paragraph [ref=e57]:
+      - link "Anthropic released Claude Fable 5" [ref=e58] [cursor=pointer]:
+        - /url: https://www.anthropic.com/news/claude-fable-5-mythos-5
+      - text: ", a Mythos-class model positioned for long-running agentic work and ambitious coding."
+    - paragraph [ref=e59]: Instead of doing yet another end-to-end coding comparison against GPT-5.5, we split the work into two rounds. Both models planned the same service, we scored the plans against a rubric, and then both models implemented the winning plan from identical starting points in Kilo Code CLI.
+    - paragraph [ref=e60]:
+      - img "Benchmark table comparing Claude Fable and Mythos with leading models" [ref=e61]
+    - paragraph [ref=e62]:
+      - strong [ref=e63]: "TL;DR:"
+      - text: Claude Fable 5 wrote the better plan (9.1 vs 8.3 on our rubric), but when both models implemented that same plan, both passed all 15 of our acceptance checks and produced identical rollout behavior, with GPT-5.5 spending $6.30 to Claude Fable 5’s $16.66.
+      - strong [ref=e64]: Planning with Claude Fable 5 and implementing with GPT-5.5 produced the same service for 59% less than using Claude Fable 5 for both phases.
+    - heading "Why Split Planning From Implementation" [level=1] [ref=e65]
+    - paragraph [ref=e66]:
+      - text: Most model comparisons run end-to-end, which makes it hard to tell whether a bad result came from a bad plan or bad execution. Separating the phases lets us measure three things with the same inputs.
+      - strong [ref=e67]: How do the models compare at planning? How do they compare when implementing the exact same plan? And does mixing them (one model plans, the other implements) actually work?
+    - paragraph [ref=e68]: "That last question matters for cost. The two models sit at meaningfully different price points:"
+    - paragraph [ref=e69]:
+      - img "Claude Fable 5 and GPT-5.5 pricing comparison" [ref=e70]
+    - paragraph [ref=e71]: Both of these are frontier models, of course. GPT-5.5 is OpenAI’s newest flagship and a strong coding model in its own right, at a lower per-token price. The question is whether the most expensive model on the market needs to be in both phases of the workflow.
+    - heading "Our Test Setup" [level=1] [ref=e72]
+    - paragraph [ref=e73]: We asked both models to plan a feature flag service, an of internal tool where you turn features on for a percentage of your users and ramp that percentage up over time.
+    - paragraph [ref=e74]:
+      - text: We picked this task because it hides a correctness trap. Percentage rollouts must be sticky (the same user always gets the same answer) and growing a rollout from 20% to 40% must keep the original 20% of users enabled, all without storing any per-user state.
+      - strong [ref=e75]: A plan that hand-waves this with “use a hash” leaves the hard decision to the implementer. A plan that specifies the exact bucketing math removes it.
+    - paragraph [ref=e76]: "Each model got the same prompt in a fresh Kilo Code CLI session, both at High reasoning:"
+    - blockquote [ref=e77]:
+      - paragraph [ref=e78]: "I’m building a feature flag service using Bun, Hono, TypeScript, and better-sqlite3. It needs to support boolean flags and percentage-based rollouts, scoped per environment (dev, staging, production). Requirements:"
+      - paragraph [ref=e79]: CRUD endpoints for managing flags and their per-environment configurations
+      - paragraph [ref=e80]: An evaluation endpoint that takes a flag key, environment, and user ID, and returns whether the flag is on for that user. Percentage rollouts must be sticky, meaning the same user ID always gets the same result for the same flag at the same rollout percentage, with no per-user state stored in the database
+      - paragraph [ref=e81]: Increasing a rollout from 20% to 40% must keep the original 20% of users enabled
+      - paragraph [ref=e82]: An in-memory cache for flag configs on the evaluation path, with invalidation when a flag changes
+      - paragraph [ref=e83]: An audit log recording every flag change (who, what, when, before/after values)
+      - paragraph [ref=e84]: API key authentication for the management endpoints, with keys stored hashed
+      - paragraph [ref=e85]: Please write me a very detailed plan in plan.md that I can hand to a developer to build from.
+    - paragraph [ref=e86]:
+      - img "Kilo Code CLI running the planning prompt with Claude Fable 5" [ref=e87]
+    - paragraph [ref=e88]:
+      - emphasis [ref=e89]: Kilo Code CLI session running the planning prompt with Claude Fable 5.
+    - paragraph [ref=e90]: Let’s see the results.
+    - 'heading "Round 1: Planning" [level=1] [ref=e91]'
+    - paragraph [ref=e92]: Both planning runs finished in about two and a half minutes.
+    - paragraph [ref=e93]:
+      - img "Planning run time and cost comparison" [ref=e94]
+    - paragraph [ref=e95]: "Both Fable 5 and GPT-5.5 got the hard requirement right, and they converged on the same core algorithm: Hash the flag key and user ID into one of 10,000 buckets, then enable the user if their bucket falls below the rollout percentage. Raising the percentage only adds buckets, so the original users stay enabled. Both plans explained the math and specified tests to prove it."
+    - paragraph [ref=e96]: The gap came from everything around the algorithm. We scored both plans against a weighted rubric covering rollout correctness, reliability design, security, decomposition, implementability, operational clarity, and communication. We defined the criteria when we designed the prompt, before either plan existed, since each requirement in the prompt maps to one of them.
+    - paragraph [ref=e97]:
+      - img "Planning rubric scores for Claude Fable 5 and GPT-5.5" [ref=e98]
+    - paragraph [ref=e99]: Two criteria drove the result.
+    - list [ref=e100]:
+      - listitem [ref=e101]:
+        - paragraph [ref=e102]:
+          - strong [ref=e103]: Reliability design.
+          - text: Claude Fable 5’s plan caught failure modes that GPT-5.5’s never mentioned.
+        - paragraph [ref=e104]: The clearest example involves caching lookups for flags that don’t exist. Without it, every request for an unknown or deleted flag skips the cache and hits the database. Claude Fable 5’s plan required caching those misses, then flagged the subtle follow-up that creating a flag must clear the stale “this flag doesn’t exist” entry, and marked it “the subtle one, don’t skip it”.
+        - paragraph [ref=e105]: Fable 5 also specified pinned hash test values so that any accidental change to the bucketing math (which would silently reshuffle every user in production) fails the test suite loudly.
+      - listitem [ref=e106]:
+        - paragraph [ref=e107]:
+          - strong [ref=e108]: Implementability.
+          - text: The prompt asked for a plan to hand to a developer, and
+          - strong [ref=e109]: Claude Fable 5’s plan made a decision at every fork and explained why.
+          - text: GPT-5.5’s plan hedged at several of them, with choices like “return not found or disabled depending on the product decision” left open for the developer to settle.
+        - paragraph [ref=e110]:
+          - text: GPT-5.5’s plan was about three times longer (1,456 lines vs 431) and won on operational breadth, with metrics, log hygiene, and deployment notes that Claude Fable 5’s plan mostly skipped.
+          - strong [ref=e111]: It was a buildable plan. It just left more decisions on the table.
+    - paragraph [ref=e112]:
+      - text: We went in expecting Claude Fable 5’s plan to win, and it did, but it won on judgment rather than completeness. The short version is that
+      - strong [ref=e113]: GPT-5.5 wrote a bigger plan
+      - text: and
+      - strong [ref=e114]: Claude Fable 5 wrote a sharper one.
+    - paragraph [ref=e115]:
+      - img "Kilo Code CLI running the planning prompt with GPT-5.5" [ref=e116]
+    - paragraph [ref=e117]:
+      - emphasis [ref=e118]: Kilo Code CLI session running the planning prompt with GPT-5.5.
+    - heading "Where the Plans Took Different Positions" [level=1] [ref=e119]
+    - paragraph [ref=e120]: Our prompt deliberately left some design decisions open, and the two plans disagreed on two of them.
+    - paragraph [ref=e121]:
+      - text: The first was whether the environment belongs in the bucketing hash. GPT-5.5’s plan included it, so a user’s rollout position in staging differs from their position in production. Claude Fable 5’s plan excluded it, called the choice out as deliberate, and documented the trade-off. Both choices satisfy the requirements.
+      - strong [ref=e122]: The difference is that GPT-5.5’s plan made the decision silently inside its hash-input spec while Claude Fable 5’s surfaced it for the reader to veto.
+      - text: Keep this fork in mind for Round 2.
+    - paragraph [ref=e123]: The second was how to hash the API keys. GPT-5.5’s plan specified bcrypt or Argon2, the standard answer for storing passwords. Claude Fable 5’s plan used a single fast SHA-256 and argued why. These keys are 256-bit random strings that cannot be brute-forced regardless of hash speed, so slow hashing buys no security here and adds cost to every authenticated request. GPT-5.5 reasoned from convention, Claude Fable 5 from the problem in front of it.
+    - paragraph [ref=e124]:
+      - text: The pattern is the same in both cases, and it is why Claude Fable 5’s plan won.
+      - strong [ref=e125]: GPT-5.5 reached for the standard answer and left contested calls to the developer. Claude Fable 5 picked a position, argued it, and flagged it for review
+      - text: . For a document whose job is to remove decisions from implementation, the second style is worth more.
+    - 'heading "Round 2: Both Models Implement the Winning Plan" [level=1] [ref=e126]'
+    - paragraph [ref=e127]:
+      - text: We took Claude Fable 5’s plan and gave it to both models as a
+      - code [ref=e128]:
+        - text: "`"
+        - generic [ref=e129]: plan.md
+        - text: "`"
+      - text: "file in an otherwise empty directory, each in a fresh Kilo Code CLI session at High reasoning. Neither session had any other context and both got the same prompt:"
+    - blockquote [ref=e130]:
+      - paragraph [ref=e131]: Implement the plan in plan.md. Follow it as written. Run the tests to verify your work before finishing.
+    - paragraph [ref=e132]:
+      - img "Implementation run time and cost comparison" [ref=e133]
+    - paragraph [ref=e134]: One thing we noticed during the runs is that both models independently finished by spinning up review sub-agents (security, performance, logic, deploy safety, duplication, dead code) and then fixing what the reviewers found. Kilo Code CLI offers this directly through its Review option.
+    - paragraph [ref=e135]:
+      - img "Review sub-agents running after implementation" [ref=e136]
+    - paragraph [ref=e137]:
+      - emphasis [ref=e138]: Review sub-agents running at the end of an implementation session.
+    - heading "Grading the Implementations" [level=1] [ref=e139]
+    - paragraph [ref=e140]: We graded both services the same way. First we ran each implementation’s own test suite. Then we booted each server and ran a 15-check acceptance script we had written before either implementation existed. The checks covered the behaviors the plan promised, including authentication rejecting missing and revoked keys, rollout results staying identical across repeated calls and across a server restart, config changes showing up immediately despite the cache, the audit log recording correct before and after values, and no plaintext API keys appearing anywhere in the database.
+    - paragraph [ref=e141]:
+      - strong [ref=e142]: Both implementations passed everything.
+    - paragraph [ref=e143]:
+      - img "Acceptance check results for both implementations" [ref=e144]
+    - paragraph [ref=e145]:
+      - text: The result that surprised us most came from comparing the two services against each other. We evaluated the same 100 user IDs against the same flag at a 35% rollout on both servers and diffed the outputs. They were identical, down to which individual users were enabled. The plan specified the hash input exactly, both models implemented it exactly,
+      - strong [ref=e146]: and the two different models produced functionally interchangeable services.
+    - heading "Plan Adherence" [level=1] [ref=e147]
+    - paragraph [ref=e148]: Both models followed the plan closely enough. The file layouts match the structure the plan proposed nearly file for file. Every decision the plan made shows up in both codebases as written, including the bucketing math, the cache design with its subtle invalidation case, the fast key hashing, and the error response format. The hash fork from Round 1 is the sharpest evidence. GPT-5.5 implemented the hash exactly as the plan specified, leaving the environment out, and carried the plan’s reasoning for that choice into a code comment, even though this is the one decision where its own planning run had gone the other way.
+    - paragraph [ref=e149]:
+      - strong [ref=e150]: Neither model overrode the plan anywhere.
+      - text: Both also crossed the plan’s boundary in the same spot, independently adding a database index the plan had missed for filtered audit log queries.
+    - paragraph [ref=e151]:
+      - img "Claude Fable 5 implementing the winning plan" [ref=e152]
+    - paragraph [ref=e153]:
+      - emphasis [ref=e154]: Claude Fable 5 implementing the winning plan.
+    - heading "Code Quality" [level=1] [ref=e155]
+    - paragraph [ref=e156]: The two codebases came out close enough that a reviewer would attribute the differences to taste rather than ability. Source size is nearly identical (1,409 vs 1,360 lines, excluding tests). Both isolate the rollout math as pure functions with no database or network access, exactly where the plan drew the module boundaries. Both keep route handlers thin, run every mutation and its audit write inside a single transaction, return the same error format everywhere, and wrote the pinned hash tests the plan demanded. We found no correctness bugs in either codebase while grading, and both servers ran the full acceptance battery without a crash, a hang, or a wrong status code.
+    - paragraph [ref=e157]:
+      - strong [ref=e158]: The differences are stylistic.
+      - text: Claude Fable 5’s code reads like an annotated build of the plan, with comments explaining which decision each piece implements and why,
+      - strong [ref=e159]: which made auditing it fast.
+      - text: GPT-5.5’s code is more compact, with less explanation and a few small conveniences of its own, like centralized handling for validation errors. The same contrast shows up in the tests. Claude Fable 5 wrote many small, named scenarios, while GPT-5.5 wrote fewer, denser tests that sweep more inputs per test. Either suite would catch a regression in the rollout math.
+    - heading "Where the Implementations Differed" [level=1] [ref=e160]
+    - paragraph [ref=e161]: Claude Fable 5’s extra tokens went to three places.
+    - list [ref=e162]:
+      - listitem [ref=e163]:
+        - paragraph [ref=e164]:
+          - strong [ref=e165]: Writing roughly twice the tests
+          - text: (966 lines vs 510), covering more distinct scenarios like rollout decreases reversing exactly and rollout independence between flags
+      - listitem [ref=e166]:
+        - paragraph [ref=e167]:
+          - strong [ref=e168]: Adding a defense the plan never asked for
+          - text: ", by rejecting malformed flag keys on the public evaluation endpoint before they reach the cache, closing a path where junk requests could grow the cache unbounded"
+      - listitem [ref=e169]:
+        - paragraph [ref=e170]:
+          - strong [ref=e171]: Commenting the code with references
+          - text: back to the plan sections it was implementing
+    - paragraph [ref=e172]: None of this changed the acceptance results. GPT-5.5 shipped the same functional service for about 62% less in two thirds of the time.
+    - heading "What the Full Pipelines Cost" [level=1] [ref=e173]
+    - paragraph [ref=e174]:
+      - img "Full pipeline cost comparison" [ref=e175]
+    - paragraph [ref=e176]: Both pipelines produced a service that passed every check. The mixed pipeline cost 59% less.
+    - paragraph [ref=e177]:
+      - text: On a single task, $10.36 is easy to dismiss.
+      - strong [ref=e178]: However, it easily adds up. A team running 20 comparable tasks a week would pay about $10,800 a year more for the single-model pipeline, and our checks could not tell the two results apart
+      - text: . The exact dollars depend on your tasks, but the 2.4x gap between the pipelines is what scales.
+    - heading "Conclusion" [level=1] [ref=e179]
+    - paragraph [ref=e180]:
+      - strong [ref=e181]: For planning, Claude Fable 5 was worth the premium.
+      - text: The price difference was $0.49 on a sub-dollar task, and it brought the plan that decided every open question and caught the failure modes the other plan missed. The plan is the artifact everything downstream depends on, so it is the
+      - strong [ref=e182]: cheapest place to pay for quality.
+    - paragraph [ref=e183]:
+      - strong [ref=e184]: For implementing a detailed plan, the premium was not needed.
+      - text: Given a plan that made every decision, GPT-5.5 matched Claude Fable 5 check for check at 2.6x lower cost. Claude Fable 5’s extra spending bought deeper tests and one unprompted hardening, not correctness.
+    - paragraph [ref=e185]:
+      - strong [ref=e186]: For the mixed setup, the evidence here supports it.
+      - text: GPT-5.5 followed another model’s plan without drifting from its design decisions, including the one decision where its own planning run had gone the other way. If you plan with one model and implement with another in Kilo Code, switching models between the two phases is one click under the prompt box.
+    - paragraph [ref=e187]:
+      - text: The benchmark-driven assumption would be to use the strongest model for everything. What we measured points somewhere narrower.
+      - strong [ref=e188]: The model gap showed up in planning, and once that judgment was written down as a plan, execution stopped depending on the model.
+      - text: The plan specified the hash input, so two different models produced services that agree down to individual users. It flagged the subtle cache case, so neither missed it. It decided everything else, so neither had to guess, and guessing is where implementations diverge.
+    - separator [ref=e189]
+    - blockquote [ref=e190]:
+      - text: This post originally appeared on
+      - link "the Kilo Blog" [ref=e191] [cursor=pointer]:
+        - /url: https://blog.kilo.ai/p/claude-fable-5-vs-gpt-5-5
+      - text: .
+  - contentinfo [ref=e192]:
+    - generic [ref=e194]:
+      - generic [ref=e195]: © 2026 Job Rietbergen.
+      - generic [ref=e196]:
+        - text: Photos by Wesley Verhoeve as part of the
+        - link "Flywheel project" [ref=e197] [cursor=pointer]:
+          - /url: https://vliegwiel.nl/
+        - text: .
